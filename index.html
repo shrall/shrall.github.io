@@ -35,7 +35,7 @@
     <br>Gunakan dengan bijak!
     <br>-Shrall
   </div>
-         <form method="POST" action=index.php">
+         <form method="POST" action="index.php">
                       <div class="form-group">
                         <label for="exampleInputEmail1"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> No Telp</label>
                         <input type="text" class="form-control" name="nomer" id="exampleInputEmail1" placeholder="Nomor telepon (ex: 0813xxxxxx)">
