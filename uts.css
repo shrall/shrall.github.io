@@ -6,11 +6,6 @@ html {
     background-image: url(truebg.png)
 }
 
-#header {
-    position: sticky;
-    align-items: center;
-
-}
 
 #navibar ul img {
     text-align: center;
@@ -29,12 +24,11 @@ html {
 }
 
 #navibar ul li a {
-    font-weight: 500;
+    font-weight: 550px;
     color: grey;
     padding: 14px;
     text-decoration: none;
     font-size: 20px;
-    font-weight: 500;
     transition: 0.3s;
 }
 
@@ -67,7 +61,7 @@ html {
 }
 .card-top img {
     float: left;
-    margin-left: 100px;
+    margin-left: 50px;
     width: 25%;
     border-radius: 50%;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
@@ -76,7 +70,7 @@ html {
     color: white;
     font-size: 20px;
     margin-top:0;
-    margin-left: 393.5px;
+    margin-left: 345px;
 }
 #intro a{
     color: white;
@@ -86,9 +80,54 @@ html {
     text-shadow: 10px 15px 25px;
 }
 
-.card-bottom h4{
+.card-bottom h3{
+    margin-left: 310px;
+    margin-top: 25px;
+    margin-bottom: 0;
+}
+
+.card-bottom h3 ul li{
+    padding-bottom: 15px;
+    list-style-type: none;
+}
+
+.card-bottom .title{
+    display: inline-block;
+    min-width: 200px;
+}
+
+
+.card-bottom .value a{
+    color: #9e9e9e;
+    text-decoration: none;
+}
+
+.card-bottom .value a:hover{
+    color:#61d0d4;
+}
+
+
+.card-bottom #botcard #about h4{
+    margin-top: 35px;
     color:black;
-    margin-left: 405px;
+    margin-left: 123px;
+    font-size: 20;
+    margin-bottom: 10px;
+}
+
+.card-bottom h4 a{
+    color: #61d0d4;
+}
+
+.card-bottom h5{
+    font-size: 15px;
+    margin-left: 55px;
+    margin-top: 10px;
+    margin-right: 650px;
+}
+
+.card-bottom #botcard #links {
+    margin-left: 400px;
 }
 
 .card:hover {
@@ -97,6 +136,14 @@ html {
 
 .card:hover .card-top{
     transition: 0.3s;
+}
+
+.card-bottom #botcard div{
+    display: inline-block;
+    height: 30px;
+}
+
+.card-bottom #botcard #links img{
     
 }
 
