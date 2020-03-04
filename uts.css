@@ -246,8 +246,8 @@ html {
 }
 
 .card-resume .card-bottom .data .desc ul li {
-    font-family: 'Monteserrat'
-        list-style-type: none;
+    font-family: 'Montserrat' ;
+    list-style-type: none;
     font-size: 21px;
     display: inline;
     font-weight: 700;
@@ -255,7 +255,7 @@ html {
 }
 
 .card-resume .card-bottom .data .desc .space {
-    min-width: 350px;
+    min-width: 360px;
     display: inline-block;
 }
 
@@ -263,54 +263,107 @@ html {
 .row {
     background-color: transparent;
     width: 1000px;
-    height: 200px;
+    height: 300px;
 }
 
-.outer{
+.outer {
     background-color: transparent;
-    width: 475px;
-    height: 200px;
+    width: 470px;
+    height: 300px;
     display: inline-block;
+    
 }
-.left{
+
+.left {
     padding-left: 45px;
+    
 }
+
 .linetop {
-    margin-top: 15px;
-    background-color: #c3c3c3;
+    margin-left: 14px;
+    background-color: #d3d3d3;
     width: 3px;
-    height: 200px;
+    height: 300px;
     position: absolute;
     vertical-align: top;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 .line {
-    margin-top: 15px;
-    background-color: #c3c3c3;
+    margin-left: 14px;
+    background-color: #d3d3d3;
     width: 3px;
     height: 100px;
     position: absolute;
     vertical-align: top;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    
 }
 
 .circle {
     background-color: white;
+    margin-top: 25px;
     width: 25px;
     height: 25px;
     position: absolute;
     border-style: solid;
-    border-radius: 0 0 40% 0;
+    border-radius: 50%;
     border-color: #d3d3d3;
+    box-shadow: 2px 0 4px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
 }
 
-.right{
+.right {
     border-style: solid;
     width: 400px;
-    height: 175px;
-    border-radius: 5%;
+    height: 250px;
+    border-radius: 10px;
     border-color: #e3e3e3;
     margin-left: 100px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3sl
 }
+
+.right h2{
+    margin: 0;
+    padding-left: 10px;
+    font-size: 20px;
+    font-weight: 1000;
+}
+.right h4{
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 25px;
+    padding-left: 10px;
+    color: #b3b3b3;
+    transition: 0.3s;
+}
+
+.right h4 a{
+    color: black;
+}
+
+
+.right img{
+    height: 150px;
+    margin: auto;
+    display: block;
+}
+
+.outer:hover .circle{
+    border-color: #61d0d4;
+    transition: 0.3s;
+}
+.outer:hover .right{
+    border-color: #61d0d4;
+    transition: 0.3s;
+}
+.outer:hover .right h4{
+    color: #61d0d4;
+    transition: 0.3s;
+}
+
+
 
 @media screen and (max-width: 980px) {
     #logo {
