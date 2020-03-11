@@ -5,21 +5,22 @@ html {
 }
 
 #logo {
-    padding-left: 300px;
     vertical-align: middle;
 }
-
+#header{
+    text-align: center;
+}
 #header div {
     display: inline-block;
 }
 
 #logo img {
+    text-align: left;
     width: 100px;
     height: 100px;
 }
 
 #navibar {
-    padding-left: 200px;
     background-color: transparent;
     vertical-align: middle;
 }
