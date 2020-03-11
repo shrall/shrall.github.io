@@ -445,17 +445,23 @@ html {
     margin: auto;
     margin-bottom: 25px;
     width: 1000px;
-    height: 500px;
+    height: 1s00px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 50px;
+    transition: 0.7s;
 }
 
+
+
 .card-logo {
-    padding-top: 100px;
     padding-left: 350px;
+    text-align: center;
+    display: inline-block;
 }
 
 .pic {
+    
+    background-color: white;
     width: 300px;
     height: 300px;
     border-style: none;
@@ -473,7 +479,60 @@ html {
     box-shadow: 0 7px 12px rgba(0, 0, 0, 0.15);
     transform: translateX(-300px);
     transition: 0.7s;
+}
 
+.card-int-content {
+    background-color: white;
+    display: inline-block;
+    border-radius: 50px;
+    margin-top: 25px;
+    margin-left: -200px;
+    width: 500px;
+    height: 225px;
+    position: absolute;
+    visibility: hidden;
+    text-align: center;
+    padding : 10px 10px 0px 10px;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+
+.card-int-content #tech{
+    color: #61a0f4;
+}
+.card-int-content #uc{
+    color: #fc811a;
+}
+.card-int-content #love{
+    color: #ee2624;
+}
+.card-int-content #cook{
+    color: #ffbd59;
+}
+
+.card-int:hover .card-int-content{
+    visibility: visible;
+    opacity: 1;
+    box-shadow: 0 7px 12px rgba(0, 0, 0, 0.15);
+    transition: 0.7s;
+}
+
+.card-int:hover{
+    box-shadow: 0 0 0 0 rgba(0,0,0,0);
+    background-color: transparent;
+    transition: 0.7s;
+}
+
+#easteregg{
+    opacity: 0;
+    transition: 0.7s;
+}
+
+.card-int:hover #easteregg{
+    opacity: 1;
+    transition: 0.7s;
+    transition-delay: 30s;
 }
 
 @media screen and (max-width: 980px) {
