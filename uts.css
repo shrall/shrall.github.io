@@ -59,7 +59,7 @@ html {
     border-radius: 50px;
 }
 
-.card-resume {
+.card-fused {
     background-color: white;
     margin: auto;
     width: 1000px;
@@ -80,7 +80,7 @@ html {
     border-top-right-radius: 50px;
 }
 
-.card-top-resume {
+.card-top-fused {
     background-color: white;
     background-image: url(bgcard.png);
     margin: auto;
@@ -115,7 +115,7 @@ html {
     font-weight: 700;
 }
 
-.card-top-resume #intro a {
+.card-top-fused #intro a {
     color: white;
     margin-left: 400px;
     width: 75%;
@@ -246,7 +246,7 @@ html {
     transition: 0.3s;
 }
 
-.card-resume .card-bottom .data .desc ul li {
+.card-fused .card-bottom .data .desc ul li {
     font-family: 'Montserrat';
     list-style-type: none;
     font-size: 21px;
@@ -255,7 +255,7 @@ html {
     line-height: 1.5em;
 }
 
-.card-resume .card-bottom .data .desc .space {
+.card-fused .card-bottom .data .desc .space {
     min-width: 420px;
     display: inline-block;
 }
@@ -427,7 +427,7 @@ html {
 }
 
 /* Interests*/
-.card-interests {
+.card-thin {
     background-color: white;
     background-image: url(bgcard.png);
     margin: auto;
@@ -445,7 +445,7 @@ html {
     margin: auto;
     margin-bottom: 25px;
     width: 1000px;
-    height: 1s00px;
+    height: 300px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 50px;
     transition: 0.7s;
@@ -453,14 +453,13 @@ html {
 
 
 
-.card-logo {
+.card-int .card-logo {
     padding-left: 350px;
     text-align: center;
     display: inline-block;
 }
 
-.pic {
-    
+.card-int .pic {
     background-color: white;
     width: 300px;
     height: 300px;
@@ -470,7 +469,7 @@ html {
     transition: 0.7s;
 }
 
-.pic img{
+.card-int .pic img{
     width: 300px;
     height: 300px;
 }
@@ -498,17 +497,23 @@ html {
 }
 
 
-.card-int-content #tech{
+#tech{
     color: #61a0f4;
 }
-.card-int-content #uc{
+#uc{
     color: #fc811a;
 }
-.card-int-content #love{
+#love{
     color: #ee2624;
 }
-.card-int-content #cook{
+#cook{
     color: #ffbd59;
+}
+#team{
+    color: #7ed957;
+}
+#bad{
+    color: #6920b0;
 }
 
 .card-int:hover .card-int-content{
@@ -534,6 +539,124 @@ html {
     transition: 0.7s;
     transition-delay: 30s;
 }
+
+/*Projects*/
+.card-proj{
+    background-color: transparent;
+    margin: auto;
+    margin-bottom: 600px;
+    width: 1000px;
+    height: 175px;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.card-proj .card-logo{
+    text-align: center;
+    display: inline-block;
+}
+
+.card-proj .banner{
+    background-color: #545454;
+    border-style: none;
+    border-radius: 50px;
+    text-align: center;
+    width: 700px;
+    height: 100px;
+    margin: auto;
+    margin-bottom: 10px;
+    padding: 10px;
+    display: inline-block;
+}
+.card-proj-photo{
+    background-color: white;
+    margin: auto;
+    margin-bottom: 25px;
+    width: 420px;
+    height: 586px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 50px;
+    display: inline-block;
+}
+.card-proj-photo img{
+    margin: 10px;
+    border-style: none;
+    border-radius: 50px;
+}
+.words{
+    background-color: white;
+    border-style: none;
+    border-radius: 50px;
+    width: 540px;
+    height: 250px;
+    padding: 10px;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 140px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin-left: 10px;
+    text-align: center;
+}
+
+#bsc{
+    width: 680px;
+    height: 80px;
+    background-color: #ffde59;
+    border-style: none;
+    border-radius: 50px;
+    padding: 10px;
+    display: inline-block;
+}
+#bsc h1{
+    font-family: 'Chewy';
+    color: #545454;
+    margin: 0;
+    font-size: 4em;
+    font-weight: 100;
+    display: inline-block;
+}
+#ap{
+    width: 680px;
+    height: 80px;
+    background-color: #5271ff;
+    border-style: none;
+    border-radius: 50px;
+    padding: 10px;
+    display: inline-block;
+}
+#ap h1{
+    font-family: 'Fredoka One';
+    color: white;
+    margin: 0;
+    font-size: 3.8em;
+    font-weight: 100;
+    display: inline-block;
+}
+/* Gallery */
+#galleryspace{
+    width: 1000px;
+    height: 1000px;
+    margin: auto;
+}
+.i3x1{
+    width: 700px;
+    height: 200px;
+    border-style: none;
+    border-radius: 50px;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.i3x1 img{
+    
+    border-style: none;
+    border-radius: 50px;
+    width: 600px;
+    height: 200px;
+}
+
+/*Contact*/
+
 
 @media screen and (max-width: 980px) {
     #logo {
