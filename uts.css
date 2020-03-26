@@ -626,10 +626,12 @@ html {
     display: grid;
     grid-template-areas: 
         'ow1 ow3 ow4'
-        'ow1 ow3 ow4'
         'ow1 ow2 ow4'
         'ow1 tshop1 tshop1'
-        'ee2 ee1 ee1';
+        'ee2 ee1 ee1'
+        'an usher usher'
+        'mentor mentor mentor'
+        'srb srb srb';
 }
 #ow1:hover{
     box-shadow:  0 7px 12px rgba(0, 0, 0, 0.15);
@@ -652,6 +654,36 @@ html {
     transition: 0.7s;
 }
 #tshop1:hover{
+    box-shadow:  0 7px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-7px);
+    transition: 0.7s;
+}
+#ee1:hover{
+    box-shadow:  0 7px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-7px);
+    transition: 0.7s;
+}
+#ee2:hover{
+    box-shadow:  0 7px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-7px);
+    transition: 0.7s;
+}
+#an:hover{
+    box-shadow:  0 7px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-7px);
+    transition: 0.7s;
+}
+#usher:hover{
+    box-shadow:  0 7px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-7px);
+    transition: 0.7s;
+}
+#mentor:hover{
+    box-shadow:  0 7px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-7px);
+    transition: 0.7s;
+}
+#srb:hover{
     box-shadow:  0 7px 12px rgba(0, 0, 0, 0.15);
     transform: translateY(-7px);
     transition: 0.7s;
@@ -727,6 +759,8 @@ html {
     border-radius: 70px;
     width: 500px;
     height: 250px;
+    margin-top: -25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 #ee2{
     grid-area: ee2;
@@ -737,6 +771,59 @@ html {
     border-radius: 70px;
     width: 400px;
     height: 225px;
+    margin-top: -50px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+#usher{
+    grid-area: usher;
+    transition: 0.7s;
+    border-width: 10px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 70px;
+    width: 500px;
+    height: 340px;
+    margin-left: -200px;
+    margin-top: 150px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+#an{
+    grid-area: an;
+    transition: 0.7s;
+    border-width: 10px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 70px;
+    width: 600px;
+    height: 280px;
+    margin-top: -40px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+#mentor{
+    grid-area: mentor;
+    transition: 0.7s;
+    border-width: 10px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 70px;
+    width: 640px;
+    height: 270px;
+    margin-top: -125px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+#srb{
+    grid-area: srb;
+    transition: 0.7s;
+    border-width: 10px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 70px;
+    width: 900px;
+    height: 300px;
+    margin-top: -25px;
+    margin-left: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 /*Contact*/
 
