@@ -496,26 +496,6 @@ html {
     transition: 0.3s;
 }
 
-
-#tech{
-    color: #61a0f4;
-}
-#uc{
-    color: #fc811a;
-}
-#love{
-    color: #ee2624;
-}
-#cook{
-    color: #ffbd59;
-}
-#team{
-    color: #7ed957;
-}
-#bad{
-    color: #6920b0;
-}
-
 .card-int:hover .card-int-content{
     visibility: visible;
     opacity: 1;
@@ -576,7 +556,7 @@ html {
     height: 586px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 50px;
-    display: inline-block;
+    display: inline-block;  
 }
 .card-proj-photo img{
     margin: 10px;
@@ -635,29 +615,159 @@ html {
 /* Gallery */
 #galleryspace{
     width: 1000px;
-    height: 1000px;
+    height: 2000px;
     margin: auto;
-}
-.i3x1{
-    width: 700px;
-    height: 200px;
-    border-style: none;
-    border-radius: 50px;
-    background-color: white;
     padding: 10px;
+    border-radius: 50px;
+    background-color: white;    
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
-.i3x1 img{
-    
-    border-style: none;
-    border-radius: 50px;
-    width: 600px;
-    height: 200px;
+.gframe{
+    display: grid;
+    grid-template-areas: 
+        'ow1 ow3 ow4'
+        'ow1 ow3 ow4'
+        'ow1 ow2 ow4'
+        'ow1 tshop1 tshop1'
+        'ee2 ee1 ee1';
+}
+#ow1:hover{
+    box-shadow:  0 7px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-7px);
+    transition: 0.7s;
+}
+#ow2:hover{
+    box-shadow:  0 7px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-7px);
+    transition: 0.7s;
+}
+#ow3:hover{
+    box-shadow:  0 7px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-7px);
+    transition: 0.7s;
+}
+#ow4:hover{
+    box-shadow:  0 7px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-7px);
+    transition: 0.7s;
+}
+#tshop1:hover{
+    box-shadow:  0 7px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-7px);
+    transition: 0.7s;
+}
+#ow1{
+    grid-area: ow1;
+    transition: 0.7s;
+    border-width: 10px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 70px;
+    width: 400px;
+    height: 270px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+#ow2{
+    grid-area: ow2;
+    transition: 0.7s;
+    border-width: 10px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 70px;
+    width: 450px;
+    height: 300px;
+    margin-right: -100px;
+    margin-top: -50px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+#ow3{
+    margin-left: -100px;
+    grid-area: ow3;
+    transition: 0.7s;
+    border-width: 10px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 70px;
+    width: 270px;
+    height: 270px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+#ow4{
+    margin-right: -100px;
+    margin-top: -100px;
+    grid-area: ow4;
+    transition: 0.7s;
+    border-width: 10px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 70px;
+    width: 235px;
+    height: 300px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+#tshop1{
+    grid-area: tshop1;
+    transition: 0.7s;
+    border-width: 10px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 70px;
+    width: 900px;
+    height: 190px;
+    margin-top: -25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
+#ee1{
+    grid-area: ee1;
+    transition: 0.7s;
+    border-width: 10px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 70px;
+    width: 500px;
+    height: 250px;
+}
+#ee2{
+    grid-area: ee2;
+    transition: 0.7s;
+    border-width: 10px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 70px;
+    width: 400px;
+    height: 225px;
+}
 /*Contact*/
 
-
+/*Text Color*/
+#tech{
+    color: #61a0f4;
+}
+#uc{
+    color: #fc811a;
+}
+#love{
+    color: #ee2624;
+}
+#cook{
+    color: #ffbd59;
+}
+#team{
+    color: #7ed957;
+}
+#bad{
+    color: #6920b0;
+}
+#mysql1{
+    color: #00608c;
+}
+#mysql2{
+    color: #e58200;
+}
+#java{
+    color: #e11f22;
+}
 @media screen and (max-width: 980px) {
     #logo {
         padding-left: 0px;

@@ -1,16 +1,18 @@
-<?php
-$name = $_POST['name'];
-$email = $_POST['email'];
-$phone = $_POST['phone'];
-$call = $_POST['call'];
-$website = $_POST['website'];
-$priority = $_POST['priority'];
-$type = $_POST['type'];
-$message = $_POST['message'];
-$formcontent=" From: $name \n Phone: $phone \n Call Back: $call \n Website: $website \n Priority: $priority \n Type: $type \n Message: $message";
-$recipient = "youremail@here.com";
-$subject = "Contact Form";
-$mailheader = "From: $email \r\n";
-mail($recipient, $subject, $formcontent, $mailheader) or die("Error!");
-echo "Thank You!";
+<?php 
+if(isset($_POST['submit'])){
+    $to = "shrallvierdo@gmail.com";
+    $from = $_POST['email'];
+    $full_name = $_POST['first_name'];
+    $subject = "Form submission";
+    $subject2 = "Copy of your form submission";
+    $message = $full_name . " wrote the following:" . "\n\n" . $_POST['message'];
+    $message2 = "Here is a copy of your message " . $first_name . "\n\n" . $_POST['message'];
+
+    $headers = "From:" . $from;
+    $headers2 = "From:" . $to;
+    mail($to,$subject,$message,$headers);
+    mail($from,$subject2,$message2,$headers2); 
+    echo "Mail Sent. Thank you " . $full_name . ", we will contact you shortly.";
+    // You can also use header('Location: thank_you.php'); to redirect to another page.
+    }
 ?>
