@@ -647,12 +647,14 @@ function toggleSwitcherPDA() {
 $(".dialogIconA").click(function () {
   if (isTurnedOnPDA == true) {
     toggleSwitcherPDA();
+    $(".screenPDA a").delay(500).animate({ opacity: "1" }, 1000);
     $(".lightAboutMe").toggleClass("lightAboutMeOn");
   }
 });
 $(".dialogIconB").click(function () {
   if (isTurnedOnPDA == false) {
     toggleSwitcherPDA();
+    setTimeout($(".screenPDA a").css("opacity", 0),1);
     $(".lightAboutMe").toggleClass("lightAboutMeOn");
   }
 });

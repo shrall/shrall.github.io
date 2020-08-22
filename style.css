@@ -890,6 +890,7 @@ html {
 }
 
 .screenPDA {
+  color: #141414;
   top: 200px;
   left: 50%;
   transform: translate(-52%, -49%);
@@ -901,6 +902,18 @@ html {
   height: 0px;
   z-index: 1;
   position: absolute;
+}
+.screenPDA a:nth-child(1){
+  opacity: 0;
+  position: absolute;
+  top: 100px;
+  left: 0;
+}.screenPDA a:nth-child(2){
+  opacity: 0;
+  position: absolute;
+  top: 150px;
+  left: 0;
+  right: 0;
 }
 .naviArrowRight {
   z-index: 5;
