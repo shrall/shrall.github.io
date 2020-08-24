@@ -15,7 +15,7 @@ var isTyping = true;
 var playerName = "";
 
 if ($(window).width() >= 1920) {
-  document.body.style.zoom = 1.5
+  document.body.style.zoom = 1.0
 };
 
 timeline = new TimelineMax({
