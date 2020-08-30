@@ -668,7 +668,8 @@ $(".naviArrowRight").click(function () {
       menuLocation++;
       $(".menuAboutMe").animate({ left: -800 - windowWidth, opacity: 0 }, 1000);
       $(".menuMyProjects").animate({ right: 0, opacity: 1 }, 1000);
-      $(".infoDesc").html("My children of blood, sweat and tears..");
+      // $(".infoDesc").html("My children of blood, sweat and tears..");
+      $(".infoDesc").html("Sorry this menu is not available yet. :<");
       $(".menuTitle").html("My Projects");
     }
   } else if (menuIndex == 2) {
@@ -679,7 +680,8 @@ $(".naviArrowRight").click(function () {
         { duration: 1000, queue: false }
       );
       $(".menuGames").animate({ right: 0, opacity: 1 }, 1000);
-      $(".infoDesc").html("( ͡° ͜ʖ ͡°) Wanna play sum games?");
+      // $(".infoDesc").html("( ͡° ͜ʖ ͡°) Wanna play sum games?");
+      $(".infoDesc").html("Sorry this menu is not available yet. :<");
       $(".menuTitle").html("Games");
     }
   }
@@ -705,7 +707,8 @@ $(".naviArrowLeft").click(function () {
       menuLocation--;
       $(".menuMyProjects").animate({ left: 0, opacity: 1 }, 1000);
       $(".menuGames").animate({ right: -700 - windowWidth, opacity: 0 }, 1000);
-      $(".infoDesc").html("My children of blood, sweat and tears..");
+      // $(".infoDesc").html("My children of blood, sweat and tears..");
+      $(".infoDesc").html("Sorry this menu is not available yet. :<");
       $(".menuTitle").html("My Projects");
     }
   }
