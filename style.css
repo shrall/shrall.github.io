@@ -844,7 +844,7 @@ html {
   left: 0;
   right: 0;
   bottom: 0;
-  width: 200px;
+  width: 500px;
   height: 30px;
   font-size: 24px;
   animation: jumpstat 0.5s linear infinite;
@@ -890,7 +890,6 @@ html {
 }
 
 .screenPDA {
-  color: #141414;
   top: 200px;
   left: 50%;
   transform: translate(-52%, -49%);
@@ -903,7 +902,9 @@ html {
   z-index: 1;
   position: absolute;
 }
+
 .screenPDA a:nth-child(1){
+  color: #141414;
   opacity: 0;
   position: absolute;
   top: 100px;
@@ -914,6 +915,148 @@ html {
   top: 150px;
   left: 0;
   right: 0;
+}
+
+.menuMyProjects {
+  text-align: center;
+  position: absolute;
+  margin: 0 auto;
+  opacity: 0;
+  left: 0;
+  right: 0px;
+  top: -80px;
+  width: 600px;
+  height: 480px;
+  background-image: url(img/ProjectTV.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center top;
+}
+.myProjectsRightBtn{
+  z-index: 5;
+  position: absolute;
+  right: 20px;
+  bottom: 50px;
+  width: 50px;
+  height: 50px;
+  font-size: large;
+  background-image: url(img/MyProjectsRightButton.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center top;
+}
+.myProjectsLeftBtn{
+  z-index: 5;
+  position: absolute;
+  right: 75px;
+  bottom: 50px;
+  width: 50px;
+  height: 50px;
+  font-size: large;
+  background-image: url(img/MyProjectsLeftButton.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center top;
+}
+.myProjectsGoBtn{
+  z-index: 5;
+  position: absolute;
+  right: 35px;
+  bottom: 175px;
+  width: 75px;
+  height: 75px;
+  font-size: large;
+  background-image: url(img/MyProjectsGoButton.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center top;
+}
+.menuGames {
+  text-align: center;
+  position: absolute;
+  margin: 0 auto;
+  opacity: 0;
+  left: 0;
+  right: 0px;
+  top: 0px;
+  width: 700px;
+  height: 350px;
+  background-image: url(img/GamesPad.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center top;
+}
+.lightGamesRed {
+  right: 70px;
+  bottom: 66px;
+  width: 18px;
+  height: 9px;
+  z-index: 1;
+  position: absolute;
+  animation: flickerGamepadRed 0.5s linear infinite;
+  animation-direction: alternate;
+}
+@keyframes flickerGamepadRed {
+  0% {
+    background-color: #662530;
+  }
+  100% {
+    background-color: #e62142;
+  }
+}
+.lightGamesGreen {
+  right: 168px;
+  bottom: 66px;
+  width: 18px;
+  height: 9px;
+  z-index: 1;
+  position: absolute;
+  animation: flickerGamepadGreen 0.5s linear infinite;
+  animation-direction: alternate;
+}
+@keyframes flickerGamepadGreen {
+  0% {
+    background-color: #2f6c2d;
+  }
+  100% {
+    background-color: #1ebf18;
+  }
+}
+.lightGamesYellow {
+  right: 70px;
+  top: 44px;
+  width: 18px;
+  height: 9px;
+  z-index: 1;
+  position: absolute;
+  animation: flickerGamepadYellow 0.5s linear infinite;
+  animation-direction: alternate;
+}
+@keyframes flickerGamepadYellow {
+  0% {
+    background-color: #6c5c2b;
+  }
+  100% {
+    background-color: #f9c011;
+  }
+}
+.lightGamesBlue {
+  right: 168px;
+  top: 44px;
+  width: 18px;
+  height: 9px;
+  z-index: 1;
+  position: absolute;
+  animation: flickerGamepadBlue 0.5s linear infinite;
+  animation-direction: alternate;
+}
+@keyframes flickerGamepadBlue {
+  0% {
+    background-color: #283f66;
+  }
+  100% {
+    background-color: #337eff;
+  }
 }
 .naviArrowRight {
   z-index: 5;
@@ -929,6 +1072,7 @@ html {
   background-position: center top;
   animation: jumpstat 0.5s linear infinite;
   animation-direction: alternate;
+  cursor: pointer;
 }
 .naviArrowLeft {
   z-index: 5;
@@ -944,6 +1088,7 @@ html {
   background-position: center top;
   animation: jumpstat 0.5s linear infinite;
   animation-direction: alternate;
+  cursor: pointer;
 }
 .star {
   z-index: -5;

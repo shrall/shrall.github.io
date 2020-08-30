@@ -13,10 +13,13 @@ var isTurnedOn = true;
 var timeline;
 var isTyping = true;
 var playerName = "";
+var windowWidth = $(window).width();
 
 if ($(window).width() >= 1920) {
-  document.body.style.zoom = 1.2
-};
+  document.body.style.zoom = 1.2;
+} else if ($(window).width() >= 1280) {
+  document.body.style.zoom = 0.9;
+}
 
 timeline = new TimelineMax({
   paused: true,
@@ -589,7 +592,7 @@ function currentTime() {
     if (hour > 12) {
       hour -= 12;
     }
-    if (hour <10){
+    if (hour < 10) {
       document.getElementById("hourDC").innerText = "0" + hour;
     } else {
       document.getElementById("hourDC").innerText = hour;
@@ -644,17 +647,86 @@ function toggleSwitcherPDA() {
   }
   isTurnedOnPDA = !isTurnedOnPDA;
 }
-$(".dialogIconA").click(function () {
-  if (isTurnedOnPDA == true) {
+
+var menuIndex = 0;
+var menuLocation = 0;
+$(".menuMyProjects").css({ right: -600 - windowWidth });
+$(".menuGames").css({ right: -700 - windowWidth });
+
+$(".naviArrowRight").click(function () {
+  if (isTurnedOnPDA == false) {
     toggleSwitcherPDA();
-    $(".screenPDA a").delay(500).animate({ opacity: "1" }, 1000);
     $(".lightAboutMe").toggleClass("lightAboutMeOn");
+    $(".screenPDA a").stop();
+    setTimeout($(".screenPDA a").css("opacity", 0),1);
+  }
+  if (menuIndex < 2) {
+    menuIndex++;
+  }
+  if (menuIndex == 1) {
+    if (menuLocation == 0) {
+      menuLocation++;
+      $(".menuAboutMe").animate({ left: -800 - windowWidth, opacity: 0 }, 1000);
+      $(".menuMyProjects").animate({ right: 0, opacity: 1 }, 1000);
+      $(".infoDesc").html("My children of blood, sweat and tears..");
+      $(".menuTitle").html("My Projects");
+    }
+  } else if (menuIndex == 2) {
+    if (menuLocation == 1) {
+      menuLocation++;
+      $(".menuMyProjects").animate(
+        { left: -600 - windowWidth, opacity: 0 },
+        { duration: 1000, queue: false }
+      );
+      $(".menuGames").animate({ right: 0, opacity: 1 }, 1000);
+      $(".infoDesc").html("( ͡° ͜ʖ ͡°) Wanna play sum games?");
+      $(".menuTitle").html("Games");
+    }
+  }
+});
+
+$(".naviArrowLeft").click(function () {
+  if (menuIndex > 0) {
+    menuIndex--;
+  }
+  if (menuIndex == 0) {
+    if (menuLocation == 1) {
+      menuLocation--;
+      $(".menuAboutMe").animate({ left: 0, opacity: 1 }, 1000);
+      $(".menuMyProjects").animate(
+        { right: -600 - windowWidth, opacity: 0 },
+        { duration: 1000, queue: false }
+      );
+      $(".infoDesc").html("¬‿¬ Do you want to know my secrets?");
+      $(".menuTitle").html("About Me");
+    }
+  } else if (menuIndex == 1) {
+    if (menuLocation == 2) {
+      menuLocation--;
+      $(".menuMyProjects").animate({ left: 0, opacity: 1 }, 1000);
+      $(".menuGames").animate({ right: -700 - windowWidth, opacity: 0 }, 1000);
+      $(".infoDesc").html("My children of blood, sweat and tears..");
+      $(".menuTitle").html("My Projects");
+    }
+  }
+});
+
+$(".dialogIconA").click(function () {
+  if (menuIndex == 0) {
+    if (isTurnedOnPDA == true) {
+      toggleSwitcherPDA();
+      $(".screenPDA a").delay(500).animate({ opacity: "1" }, 1000);
+      $(".lightAboutMe").toggleClass("lightAboutMeOn");
+    }
   }
 });
 $(".dialogIconB").click(function () {
-  if (isTurnedOnPDA == false) {
-    toggleSwitcherPDA();
-    setTimeout($(".screenPDA a").css("opacity", 0),1);
-    $(".lightAboutMe").toggleClass("lightAboutMeOn");
+  if (menuIndex == 0) {
+    if (isTurnedOnPDA == false) {
+      toggleSwitcherPDA();
+      $(".screenPDA a").stop();
+      setTimeout($(".screenPDA a").css("opacity", 0),1);
+      $(".lightAboutMe").toggleClass("lightAboutMeOn");
+    }
   }
 });
