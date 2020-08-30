@@ -690,6 +690,7 @@ html {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     margin-left: 10px;
     text-align: center;
+	font-size:14px;
 }
 
 #bsc {
@@ -706,7 +707,7 @@ html {
     font-family: 'Chewy';
     color: #545454;
     margin: 0;
-    font-size: 4em;
+    font-size: 52px;
     font-weight: 100;
     display: inline-block;
 }
@@ -728,6 +729,27 @@ html {
     font-size: 52px;
     font-weight: 100;
     display: inline-block;
+}
+#lu {
+    width: 680px;
+    height: 80px;
+    background-color: #fff;
+    border-style: none;
+    border-radius: 50px;
+    padding: 10px;
+    display: inline-block;
+    color: #141414;
+}
+
+#lu h1 {
+    font-family: 'Titillium Web';
+    font-weight: 800;
+    margin: 0;
+    font-size: 52px;
+    display: inline-block;
+}
+#lvl{
+    color: #ffb200;
 }
 
 /* Gallery */
