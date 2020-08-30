@@ -495,7 +495,6 @@ html {
     background-color: white;
     display: inline-block;
     border-radius: 50px;
-    margin-top: 25px;
     margin-left: -600px;
     width: 500px;
     height: 235px;
@@ -726,7 +725,7 @@ html {
     font-family: 'Fredoka One';
     color: white;
     margin: 0;
-    font-size: 3.8em;
+    font-size: 52px;
     font-weight: 100;
     display: inline-block;
 }
