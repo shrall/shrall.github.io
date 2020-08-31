@@ -652,15 +652,16 @@ var menuIndex = 0;
 var menuLocation = 0;
 $(".menuMyProjects").css({ right: -600 - windowWidth });
 $(".menuGames").css({ right: -700 - windowWidth });
+$(".menuSettings").css({ right: -375 - windowWidth });
 
 $(".naviArrowRight").click(function () {
   if (isTurnedOnPDA == false) {
     toggleSwitcherPDA();
     $(".lightAboutMe").toggleClass("lightAboutMeOn");
     $(".screenPDA a").stop();
-    setTimeout($(".screenPDA a").css("opacity", 0),1);
+    setTimeout($(".screenPDA a").css("opacity", 0), 1);
   }
-  if (menuIndex < 2) {
+  if (menuIndex < 3) {
     menuIndex++;
   }
   if (menuIndex == 1) {
@@ -668,8 +669,8 @@ $(".naviArrowRight").click(function () {
       menuLocation++;
       $(".menuAboutMe").animate({ left: -800 - windowWidth, opacity: 0 }, 1000);
       $(".menuMyProjects").animate({ right: 0, opacity: 1 }, 1000);
+      $(".infoDesc").html("Sorry, this menu is not available yet.");
       // $(".infoDesc").html("My children of blood, sweat and tears..");
-      $(".infoDesc").html("Sorry this menu is not available yet.");
       $(".menuTitle").html("My Projects");
     }
   } else if (menuIndex == 2) {
@@ -680,9 +681,21 @@ $(".naviArrowRight").click(function () {
         { duration: 1000, queue: false }
       );
       $(".menuGames").animate({ right: 0, opacity: 1 }, 1000);
+      $(".infoDesc").html("Sorry, this menu is not available yet.");
       // $(".infoDesc").html("( ͡° ͜ʖ ͡°) Wanna play sum games?");
-      $(".infoDesc").html("Sorry this menu is not available yet.");
       $(".menuTitle").html("Games");
+    }
+  } else if (menuIndex == 3) {
+    if (menuLocation == 2) {
+      menuLocation++;
+      $(".menuGames").animate(
+        { left: -700 - windowWidth, opacity: 0 },
+        { duration: 1000, queue: false }
+      );
+      $(".menuSettings").animate({ right: 0, opacity: 1 }, 1000);
+      $(".infoDesc").html("Sorry, this menu is not available yet.");
+      // $(".infoDesc").html("This thing can change stuff! (゜ロ゜)");
+      $(".menuTitle").html("Settings");
     }
   }
 });
@@ -706,10 +719,25 @@ $(".naviArrowLeft").click(function () {
     if (menuLocation == 2) {
       menuLocation--;
       $(".menuMyProjects").animate({ left: 0, opacity: 1 }, 1000);
-      $(".menuGames").animate({ right: -700 - windowWidth, opacity: 0 }, 1000);
+      $(".menuGames").animate(
+        { right: -700 - windowWidth, opacity: 0 },
+        { duration: 1000, queue: false }
+      );
+      $(".infoDesc").html("Sorry, this menu is not available yet.");
       // $(".infoDesc").html("My children of blood, sweat and tears..");
-      $(".infoDesc").html("Sorry this menu is not available yet.");
       $(".menuTitle").html("My Projects");
+    }
+  } else if (menuIndex == 2) {
+    if (menuLocation == 3) {
+      menuLocation--;
+      $(".menuGames").animate({ left: 0, opacity: 1 }, 1000);
+      $(".menuSettings").animate(
+        { right: -375 - windowWidth, opacity: 0 },
+        1000
+      );
+      $(".infoDesc").html("Sorry, this menu is not available yet.");
+      // $(".infoDesc").html("( ͡° ͜ʖ ͡°) Wanna play sum games?");
+      $(".menuTitle").html("Games");
     }
   }
 });
@@ -728,8 +756,94 @@ $(".dialogIconB").click(function () {
     if (isTurnedOnPDA == false) {
       toggleSwitcherPDA();
       $(".screenPDA a").stop();
-      setTimeout($(".screenPDA a").css("opacity", 0),1);
+      setTimeout($(".screenPDA a").css("opacity", 0), 1);
       $(".lightAboutMe").toggleClass("lightAboutMeOn");
     }
   }
+});
+
+const iconElement = document.querySelector(".weather-icon");
+const tempElement = document.getElementById("#tempDC");
+
+const weather = {};
+
+weather.temperature = {
+  unit: "celsius",
+};
+
+const KELVIN = 273;
+const key = "d5990b002586fd7e8874376b2f080cbb";
+
+if ("geolocation" in navigator) {
+  navigator.geolocation.getCurrentPosition(setPosition);
+}
+
+function setPosition(position) {
+  let latitude = position.coords.latitude;
+  let longitude = position.coords.longitude;
+  getWeather(latitude, longitude);
+}
+
+function getWeather(latitude, longitude) {
+  let api = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}`;
+
+  fetch(api)
+    .then(function (response) {
+      let data = response.json();
+      return data;
+    })
+    .then(function (data) {
+      weather.temperature.value = Math.floor(data.main.temp - KELVIN);
+      weather.iconId = data.weather[0].icon;
+    })
+    .then(function () {
+      displayWeather();
+    });
+}
+
+function displayWeather() {
+  $("#tempDC").html(`${weather.temperature.value}°C`);
+  if(`${weather.iconId}`=="01d"){
+    $(".digitalClock").css('background-image','url(img/DigitalClockDay.png)')
+  }else if(`${weather.iconId}`=="01n"){
+    $(".digitalClock").css('background-image','url(img/DigitalClockNight.png)')
+  }else if(`${weather.iconId}`=="02d"||`${weather.iconId}`=="03d"){
+    $(".digitalClock").css('background-image','url(img/DigitalClockCloudyDay.png)')
+  }else if(`${weather.iconId}`=="02n"||`${weather.iconId}`=="03n"){
+    $(".digitalClock").css('background-image','url(img/DigitalClockCloudyNight.png)')
+  }else if(`${weather.iconId}`=="04d"||`${weather.iconId}`=="04n"){
+    $(".digitalClock").css('background-image','url(img/DigitalClockCloudy.png)')
+  }else if(`${weather.iconId}`=="09d"||`${weather.iconId}`=="09n"){
+    $(".digitalClock").css('background-image','url(img/DigitalClockCloudyRain1.png)')
+  }else if(`${weather.iconId}`=="10d"||`${weather.iconId}`=="10n"){
+    $(".digitalClock").css('background-image','url(img/DigitalClockCloudyRain2.png)')
+  }else if(`${weather.iconId}`=="11d"||`${weather.iconId}`=="11n"){
+    $(".digitalClock").css('background-image','url(img/DigitalClockCloudyThunder.png)')
+  }else if(`${weather.iconId}`=="13d"||`${weather.iconId}`=="13n"){
+    $(".digitalClock").css('background-image','url(img/DigitalClockSnowy.png)')
+  }else if(`${weather.iconId}`=="50d"||`${weather.iconId}`=="50n"){
+    $(".digitalClock").css('background-image','url(img/DigitalClockWindy.png)')
+  }
+}
+
+function celsiusToFahrenheit(temperature) {
+  return (temperature * 9) / 5 + 32;
+}
+$("#tempDC").click(function () {
+  if (weather.temperature.value === undefined) {
+    alert("(° ͜ʖ°) Tell me where you are...\nSo that I can show you the weather. (° ͜ʖ°)");
+  }else{
+    if (weather.temperature.unit == "celsius") {
+      let fahrenheit = celsiusToFahrenheit(weather.temperature.value);
+      fahrenheit = Math.floor(fahrenheit);
+  
+    $("#tempDC").html(`${fahrenheit}°F`);
+      weather.temperature.unit = "fahrenheit";
+    } else {
+      $("#tempDC").html(`${weather.temperature.value}°C`);
+      weather.temperature.unit = "celsius";
+    }
+  }
+
+  
 });
