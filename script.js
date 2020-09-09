@@ -621,6 +621,119 @@ function updateTime(k) {
 
 currentTime();
 
+const iconElement = document.querySelector(".weather-icon");
+const tempElement = document.getElementById("#tempDC");
+
+const weather = {};
+
+weather.temperature = {
+  unit: "celsius",
+};
+
+const KELVIN = 273;
+const key = "d5990b002586fd7e8874376b2f080cbb";
+
+if ("geolocation" in navigator) {
+  navigator.geolocation.getCurrentPosition(setPosition);
+}
+
+function setPosition(position) {
+  let latitude = position.coords.latitude;
+  let longitude = position.coords.longitude;
+  getWeather(latitude, longitude);
+}
+
+function getWeather(latitude, longitude) {
+  let api = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}`;
+
+  fetch(api)
+    .then(function (response) {
+      let data = response.json();
+      return data;
+    })
+    .then(function (data) {
+      weather.temperature.value = Math.floor(data.main.temp - KELVIN);
+      weather.iconId = data.weather[0].icon;
+    })
+    .then(function () {
+      displayWeather();
+    });
+}
+
+function displayWeather() {
+  $("#tempDC").html(`${weather.temperature.value}°C`);
+  if (`${weather.iconId}` == "01d") {
+    $(".digitalClock").css("background-image", "url(img/DigitalClockDay.png)");
+  } else if (`${weather.iconId}` == "01n") {
+    $(".digitalClock").css(
+      "background-image",
+      "url(img/DigitalClockNight.png)"
+    );
+  } else if (`${weather.iconId}` == "02d" || `${weather.iconId}` == "03d") {
+    $(".digitalClock").css(
+      "background-image",
+      "url(img/DigitalClockCloudyDay.png)"
+    );
+  } else if (`${weather.iconId}` == "02n" || `${weather.iconId}` == "03n") {
+    $(".digitalClock").css(
+      "background-image",
+      "url(img/DigitalClockCloudyNight.png)"
+    );
+  } else if (`${weather.iconId}` == "04d" || `${weather.iconId}` == "04n") {
+    $(".digitalClock").css(
+      "background-image",
+      "url(img/DigitalClockCloudy.png)"
+    );
+  } else if (`${weather.iconId}` == "09d" || `${weather.iconId}` == "09n") {
+    $(".digitalClock").css(
+      "background-image",
+      "url(img/DigitalClockCloudyRain1.png)"
+    );
+  } else if (`${weather.iconId}` == "10d" || `${weather.iconId}` == "10n") {
+    $(".digitalClock").css(
+      "background-image",
+      "url(img/DigitalClockCloudyRain2.png)"
+    );
+  } else if (`${weather.iconId}` == "11d" || `${weather.iconId}` == "11n") {
+    $(".digitalClock").css(
+      "background-image",
+      "url(img/DigitalClockCloudyThunder.png)"
+    );
+  } else if (`${weather.iconId}` == "13d" || `${weather.iconId}` == "13n") {
+    $(".digitalClock").css(
+      "background-image",
+      "url(img/DigitalClockSnowy.png)"
+    );
+  } else if (`${weather.iconId}` == "50d" || `${weather.iconId}` == "50n") {
+    $(".digitalClock").css(
+      "background-image",
+      "url(img/DigitalClockWindy.png)"
+    );
+  }
+}
+
+function celsiusToFahrenheit(temperature) {
+  return (temperature * 9) / 5 + 32;
+}
+$("#tempDC").click(function () {
+  if (weather.temperature.value === undefined) {
+    alert(
+      "(° ͜ʖ°) Tell me where you are...\nSo that I can show you the weather. (° ͜ʖ°)"
+    );
+  } else {
+    if (weather.temperature.unit == "celsius") {
+      let fahrenheit = celsiusToFahrenheit(weather.temperature.value);
+      fahrenheit = Math.floor(fahrenheit);
+
+      $("#tempDC").html(`${fahrenheit}°F`);
+      weather.temperature.unit = "fahrenheit";
+    } else {
+      $("#tempDC").html(`${weather.temperature.value}°C`);
+      weather.temperature.unit = "celsius";
+    }
+  }
+});
+
 timelinePDA = new TimelineMax({
   paused: true,
 });
@@ -647,7 +760,13 @@ function toggleSwitcherPDA() {
   }
   isTurnedOnPDA = !isTurnedOnPDA;
 }
-
+function offPDA() {
+  $(".containerPDA").css("display", "none");
+  $(".iconPDA").stop();
+  $(".iconTitle").stop();
+  setTimeout($(".iconPDA").css("opacity", 0), 1);
+  setTimeout($(".iconTitle").css("opacity", 0), 1);
+}
 var menuIndex = 0;
 var menuLocation = 0;
 $(".menuMyProjects").css({ right: -600 - windowWidth });
@@ -658,6 +777,8 @@ $(".naviArrowRight").click(function () {
   if (isTurnedOnPDA == false) {
     toggleSwitcherPDA();
     $(".lightAboutMe").toggleClass("lightAboutMeOn");
+    offPDA();
+    closeIG();
     $(".screenPDA a").stop();
     setTimeout($(".screenPDA a").css("opacity", 0), 1);
   }
@@ -745,8 +866,11 @@ $(".naviArrowLeft").click(function () {
 $(".dialogIconA").click(function () {
   if (menuIndex == 0) {
     if (isTurnedOnPDA == true) {
+      $(".containerPDA").css("display", "block");
       toggleSwitcherPDA();
       $(".screenPDA a").delay(500).animate({ opacity: "1" }, 1000);
+      $(".iconPDA").delay(500).animate({ opacity: "1" }, 1000);
+      $(".iconTitle").delay(500).animate({ opacity: "1" }, 1000);
       $(".lightAboutMe").toggleClass("lightAboutMeOn");
     }
   }
@@ -755,6 +879,8 @@ $(".dialogIconB").click(function () {
   if (menuIndex == 0) {
     if (isTurnedOnPDA == false) {
       toggleSwitcherPDA();
+      offPDA();
+      closeIG();
       $(".screenPDA a").stop();
       setTimeout($(".screenPDA a").css("opacity", 0), 1);
       $(".lightAboutMe").toggleClass("lightAboutMeOn");
@@ -762,88 +888,137 @@ $(".dialogIconB").click(function () {
   }
 });
 
-const iconElement = document.querySelector(".weather-icon");
-const tempElement = document.getElementById("#tempDC");
-
-const weather = {};
-
-weather.temperature = {
-  unit: "celsius",
-};
-
-const KELVIN = 273;
-const key = "d5990b002586fd7e8874376b2f080cbb";
-
-if ("geolocation" in navigator) {
-  navigator.geolocation.getCurrentPosition(setPosition);
-}
-
-function setPosition(position) {
-  let latitude = position.coords.latitude;
-  let longitude = position.coords.longitude;
-  getWeather(latitude, longitude);
-}
-
-function getWeather(latitude, longitude) {
-  let api = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}`;
-
-  fetch(api)
-    .then(function (response) {
-      let data = response.json();
-      return data;
-    })
-    .then(function (data) {
-      weather.temperature.value = Math.floor(data.main.temp - KELVIN);
-      weather.iconId = data.weather[0].icon;
-    })
-    .then(function () {
-      displayWeather();
-    });
-}
-
-function displayWeather() {
-  $("#tempDC").html(`${weather.temperature.value}°C`);
-  if(`${weather.iconId}`=="01d"){
-    $(".digitalClock").css('background-image','url(img/DigitalClockDay.png)')
-  }else if(`${weather.iconId}`=="01n"){
-    $(".digitalClock").css('background-image','url(img/DigitalClockNight.png)')
-  }else if(`${weather.iconId}`=="02d"||`${weather.iconId}`=="03d"){
-    $(".digitalClock").css('background-image','url(img/DigitalClockCloudyDay.png)')
-  }else if(`${weather.iconId}`=="02n"||`${weather.iconId}`=="03n"){
-    $(".digitalClock").css('background-image','url(img/DigitalClockCloudyNight.png)')
-  }else if(`${weather.iconId}`=="04d"||`${weather.iconId}`=="04n"){
-    $(".digitalClock").css('background-image','url(img/DigitalClockCloudy.png)')
-  }else if(`${weather.iconId}`=="09d"||`${weather.iconId}`=="09n"){
-    $(".digitalClock").css('background-image','url(img/DigitalClockCloudyRain1.png)')
-  }else if(`${weather.iconId}`=="10d"||`${weather.iconId}`=="10n"){
-    $(".digitalClock").css('background-image','url(img/DigitalClockCloudyRain2.png)')
-  }else if(`${weather.iconId}`=="11d"||`${weather.iconId}`=="11n"){
-    $(".digitalClock").css('background-image','url(img/DigitalClockCloudyThunder.png)')
-  }else if(`${weather.iconId}`=="13d"||`${weather.iconId}`=="13n"){
-    $(".digitalClock").css('background-image','url(img/DigitalClockSnowy.png)')
-  }else if(`${weather.iconId}`=="50d"||`${weather.iconId}`=="50n"){
-    $(".digitalClock").css('background-image','url(img/DigitalClockWindy.png)')
+function nFormatter(num) {
+  if (num >= 1000000000) {
+    return (num / 1000000000).toFixed(1).replace(/\.0$/, "") + "B";
   }
+  if (num >= 1000000) {
+    return (num / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
+  }
+  if (num >= 1000) {
+    return (num / 1000).toFixed(1).replace(/\.0$/, "") + "K";
+  }
+  return num;
 }
 
-function celsiusToFahrenheit(temperature) {
-  return (temperature * 9) / 5 + 32;
-}
-$("#tempDC").click(function () {
-  if (weather.temperature.value === undefined) {
-    alert("(° ͜ʖ°) Tell me where you are...\nSo that I can show you the weather. (° ͜ʖ°)");
-  }else{
-    if (weather.temperature.unit == "celsius") {
-      let fahrenheit = celsiusToFahrenheit(weather.temperature.value);
-      fahrenheit = Math.floor(fahrenheit);
+var igUsername = "shrallok";
+
+$.ajax({
+  url: "https://www.instagram.com/" + igUsername + "?__a=1",
+  type: "get",
+  success: function (response) {
+    $(".igProfilePic").css(
+      "background-image",
+      "url(" + response.graphql.user.profile_pic_url + ")"
+    );
+    $(".igProfileName").html(response.graphql.user.full_name);
+    $(".igUsername").html(response.graphql.user.username);
+    $(".igPosts").html(
+      nFormatter(response.graphql.user.edge_owner_to_timeline_media.count) +
+        "<br>posts"
+    );
+    $(".igFollowers").html(
+      nFormatter(response.graphql.user.edge_followed_by.count) + "<br>followers"
+    );
+    $(".igFollowing").html(
+      nFormatter(response.graphql.user.edge_follow.count) + "<br>following"
+    );
+    posts = response.graphql.user.edge_owner_to_timeline_media.edges;
+    posts_html = "";
+    for (var i = 0; i < posts.length; i++) {
+      url = posts[i].node.display_url;
+      $(".igPost" + (i + 1)).css("background-image", "url(" + url + ")");
+    }
+  },
+});
+
+const igSearch = document.getElementById("igNavbarInput");
+igSearch.addEventListener("keyup", function (event) {
+  if (event.key === "Enter") {
+    igUsername = $("#igNavbarInput").val();
+    $.ajax({
+      url: "https://www.instagram.com/" + igUsername + "?__a=1",
+      type: "get",
+      success: function (response) {
+        $(".igProfilePic").css(
+          "background-image",
+          "url(" + response.graphql.user.profile_pic_url + ")"
+        );
+        $(".igProfileName").html(response.graphql.user.full_name);
+        $(".igUsername").html(response.graphql.user.username);
+        $(".igPosts").html(
+          nFormatter(response.graphql.user.edge_owner_to_timeline_media.count) +
+            "<br>posts"
+        );
+        $(".igFollowers").html(
+          nFormatter(response.graphql.user.edge_followed_by.count) +
+            "<br>followers"
+        );
+        $(".igFollowing").html(
+          nFormatter(response.graphql.user.edge_follow.count) + "<br>following"
+        );
+        posts = response.graphql.user.edge_owner_to_timeline_media.edges;
+        posts_html = "";
+        for (var i = 0; i < 3; i++) {
+          if (
+            response.graphql.user.edge_owner_to_timeline_media.count > 0 &&
+            posts.length == 0
+          ) {
+            $(".igPost1").css("background-image", "url()");
+            $(".igPost2").css("background-image", "url()");
+            $(".igPost3").css("background-image", "url()");
+          }
+          if (response.graphql.user.edge_owner_to_timeline_media.count < 1) {
+            $(".igPost1").css("background-image", "url()");
+            $(".igPost2").css("background-image", "url()");
+            $(".igPost3").css("background-image", "url()");
+          } else if (
+            response.graphql.user.edge_owner_to_timeline_media.count < 2
+          ) {
+            $(".igPost2").css("background-image", "url()");
+            $(".igPost3").css("background-image", "url()");
+          } else if (
+            response.graphql.user.edge_owner_to_timeline_media.count < 3
+          ) {
+            $(".igPost3").css("background-image", "url()");
+          }
+          url = posts[i].node.display_url;
+          $(".igPost" + (i + 1)).css("background-image", "url(" + url + ")");
+        }
+      },
+    });
+  }
+});
+
+$(".iconIG").click(function () {
+  $(".igPDA").css("display", "block");
+  $(".iconPDA").stop();
+  $(".iconTitle").stop();
+  $(".iconPDA").animate({ opacity: "0" }, 500);
+  $(".iconTitle").animate({ opacity: "0" }, 500);
+  $(".igNavbar").delay(500).animate({ opacity: "1" }, 500);
+  $(".igBody").delay(500).animate({ opacity: "1" }, 500);
+});
+
+function closeIG(){
   
-    $("#tempDC").html(`${fahrenheit}°F`);
-      weather.temperature.unit = "fahrenheit";
-    } else {
-      $("#tempDC").html(`${weather.temperature.value}°C`);
-      weather.temperature.unit = "celsius";
+  $(".igPDA").css("display", "none");
+  $(".igNavbar").stop();
+  $(".igBody").stop();
+  $(".igNavbar").css("opacity", 0);
+  $(".igBody").css("opacity", 0);
+}
+
+$(".aboutMeBackBtn").click(function () {
+  if (menuIndex == 0) {
+    if (isTurnedOnPDA == false) {
+      closeIG();
+      $(".iconPDA").animate({ opacity: "1" }, 500);
+      $(".iconTitle").animate({ opacity: "1" }, 500);
     }
   }
+});
 
-  
+$(".igVisitProfile").click(function () {
+window.open("https://www.instagram.com/" + igUsername);
 });
