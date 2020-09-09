@@ -16,7 +16,7 @@ var playerName = "";
 var windowWidth = $(window).width();
 
 if ($(window).width() >= 1920) {
-  document.body.style.zoom = 1.2;
+  document.body.style.zoom = 1.0;
 } else if ($(window).width() >= 1280) {
   document.body.style.zoom = 0.9;
 }
@@ -991,6 +991,8 @@ igSearch.addEventListener("keyup", function (event) {
 });
 
 $(".iconIG").click(function () {
+  $(".screenPDA a").stop();
+  setTimeout($(".screenPDA a").css("opacity", 0), 1);
   $(".igPDA").css("display", "block");
   $(".iconPDA").stop();
   $(".iconTitle").stop();
@@ -1002,6 +1004,8 @@ $(".iconIG").click(function () {
 
 function closeIG(){
   
+  $(".screenPDA a").stop();
+  setTimeout($(".screenPDA a").css("opacity", 1), 1);
   $(".igPDA").css("display", "none");
   $(".igNavbar").stop();
   $(".igBody").stop();
