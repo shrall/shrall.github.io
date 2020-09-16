@@ -734,8 +734,8 @@ $("#tempDC").click(function () {
   }
 });
 
-var y = 0;
-var z = 0;
+var yinfo = 0;
+var zinfo = 0;
 var txt1 = [
   "¬‿¬ Do you want to know my secrets?",
   "Sorry, this menu is not available yet.",
@@ -744,11 +744,10 @@ var txt1 = [
 ];
 
 function typeWriter1() {
-  if (y < txt1[z].length) {
-    // $(".infodesc").html()+= txt1[z].charAt(y);
-    document.getElementById("infoDesc").innerHTML += txt1[z].charAt(y);
-    y++;
-    if (y == txt1[z].length) {
+  if (yinfo < txt1[zinfo].length) {
+    document.getElementById("infoDesc").innerHTML += txt1[zinfo].charAt(yinfo);
+    yinfo++;
+    if (yinfo == txt1[zinfo].length) {
       isTyping = false;
     }
     if (isTyping != false) {
@@ -796,6 +795,22 @@ $(".menuMyProjects").css({ right: -600 - windowWidth });
 $(".menuGames").css({ right: -700 - windowWidth });
 $(".menuSettings").css({ right: -375 - windowWidth });
 
+function naviRight(){
+  yinfo = 0;
+  zinfo++;
+  document.getElementById("infoDesc").innerHTML = "";
+  isTyping = true;
+  setTimeout(typeWriter1(), 50);
+}
+
+function naviLeft(){
+  yinfo = 0;
+  zinfo--;
+  document.getElementById("infoDesc").innerHTML = "";
+  isTyping = true;
+  setTimeout(typeWriter1(), 50);
+}
+
 $(".naviArrowRight").click(function () {
   if (isTurnedOnPDA == false) {
     toggleSwitcherPDA();
@@ -814,12 +829,7 @@ $(".naviArrowRight").click(function () {
       menuLocation++;
       $(".menuAboutMe").animate({ left: -800 - windowWidth, opacity: 0 }, 1000);
       $(".menuMyProjects").animate({ right: 0, opacity: 1 }, 1000);
-      clearTimeout(typeWriter1);
-      y = 0;
-      z++;
-      document.getElementById("infoDesc").innerHTML = "";
-      isTyping = true;
-      setTimeout(typeWriter1(), speed);
+      naviRight();
       // $(".infoDesc").html("Sorry, this menu is not available yet.");
       // $(".infoDesc").html("My children of blood, sweat and tears..");
       $(".menuTitle").html("My Projects");
@@ -832,12 +842,7 @@ $(".naviArrowRight").click(function () {
         { duration: 1000, queue: false }
       );
       $(".menuGames").animate({ right: 0, opacity: 1 }, 1000);
-      clearTimeout(typeWriter1);
-      y = 0;
-      z++;
-      document.getElementById("infoDesc").innerHTML = "";
-      isTyping = true;
-      setTimeout(typeWriter1(), speed);
+      naviRight();
       // $(".infoDesc").html("Sorry, this menu is not available yet.");
       // $(".infoDesc").html("( ͡° ͜ʖ ͡°) Wanna play sum games?");
       $(".menuTitle").html("Games");
@@ -850,12 +855,7 @@ $(".naviArrowRight").click(function () {
         { duration: 1000, queue: false }
       );
       $(".menuSettings").animate({ right: 0, opacity: 1 }, 1000);
-      clearTimeout(typeWriter1);
-      y = 0;
-      z++;
-      document.getElementById("infoDesc").innerHTML = "";
-      isTyping = true;
-      setTimeout(typeWriter1(), speed);
+      naviRight();
       // $(".infoDesc").html("Sorry, this menu is not available yet.");
       // $(".infoDesc").html("This thing can change stuff! (゜ロ゜)");
       $(".menuTitle").html("Settings");
@@ -875,12 +875,7 @@ $(".naviArrowLeft").click(function () {
         { right: -600 - windowWidth, opacity: 0 },
         { duration: 1000, queue: false }
       );
-      clearTimeout(typeWriter1);
-      y = 0;
-      z--;
-      document.getElementById("infoDesc").innerHTML = "";
-      isTyping = true;
-      setTimeout(typeWriter1(), speed);
+        naviLeft();
       // $(".infoDesc").html("¬‿¬ Do you want to know my secrets?");
       $(".menuTitle").html("About Me");
     }
@@ -892,12 +887,7 @@ $(".naviArrowLeft").click(function () {
         { right: -700 - windowWidth, opacity: 0 },
         { duration: 1000, queue: false }
       );
-      clearTimeout(typeWriter1);
-      y = 0;
-      z--;
-      document.getElementById("infoDesc").innerHTML = "";
-      isTyping = true;
-      setTimeout(typeWriter1(), speed);
+      naviLeft();
       // $(".infoDesc").html("Sorry, this menu is not available yet.");
       // $(".infoDesc").html("My children of blood, sweat and tears..");
       $(".menuTitle").html("My Projects");
@@ -910,12 +900,7 @@ $(".naviArrowLeft").click(function () {
         { right: -375 - windowWidth, opacity: 0 },
         1000
       );
-      clearTimeout(typeWriter1);
-      y = 0;
-      z--;
-      document.getElementById("infoDesc").innerHTML = "";
-      isTyping = true;
-      setTimeout(typeWriter1(), speed);
+      naviLeft();
       // $(".infoDesc").html("Sorry, this menu is not available yet.");
       // $(".infoDesc").html("( ͡° ͜ʖ ͡°) Wanna play sum games?");
       $(".menuTitle").html("Games");
