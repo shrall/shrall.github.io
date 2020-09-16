@@ -14,6 +14,7 @@ html {
 }
 
 #start-page {
+  /* displaynone */
   /* display: none; */
   top: 0;
   left: 0;
@@ -228,6 +229,7 @@ html {
   background-position: center top;
 }
 .btnAB {
+  cursor: pointer;
   position: absolute;
   width: 31px;
   height: 31px;
@@ -235,6 +237,7 @@ html {
   left: 20px;
 }
 .btnUp {
+  cursor: pointer;
   position: absolute;
   width: 32px;
   height: 32px;
@@ -242,6 +245,7 @@ html {
   left: 46px;
 }
 .btnDown {
+  cursor: pointer;
   position: absolute;
   width: 32px;
   height: 32px;
@@ -249,6 +253,7 @@ html {
   left: 46px;
 }
 .btnRight {
+  cursor: pointer;
   position: absolute;
   width: 31px;
   height: 32px;
@@ -256,6 +261,7 @@ html {
   left: 79px;
 }
 .btnLeft {
+  cursor: pointer;
   position: absolute;
   width: 31px;
   height: 32px;
@@ -263,6 +269,7 @@ html {
   left: 13px;
 }
 .btnStartOne {
+  cursor: pointer;
   position: absolute;
   top: 21px;
   width: 17px;
@@ -270,6 +277,7 @@ html {
   left: 12px;
 }
 .btnStartTwo {
+  cursor: pointer;
   position: absolute;
   top: 11px;
   width: 18px;
@@ -277,6 +285,7 @@ html {
   left: 32px;
 }
 .btnSelectOne {
+  cursor: pointer;
   position: absolute;
   top: 21px;
   width: 17px;
@@ -284,6 +293,7 @@ html {
   left: 12px;
 }
 .btnSelectTwo {
+  cursor: pointer;
   position: absolute;
   top: 11px;
   width: 18px;
@@ -681,6 +691,7 @@ html {
 /* homepage */
 
 #home-page {
+  /* displaynone+opacity0 */
   display: none;
   opacity: 0;
   z-index: -100;
@@ -786,7 +797,7 @@ html {
   left: 32px;
   font-size: 17px;
 }
-.infoDesc {
+#infoDesc {
   position: absolute;
   top: 80px;
   left: 40px;
@@ -920,23 +931,19 @@ html {
   color: #141414;
 }
 
-.screenPDA #temp01{
+.screenPDA #temp01 {
   color: #141414;
   opacity: 0;
   position: absolute;
   top: 50px;
   left: 0;
-}.screenPDA #temp02{
+}
+.screenPDA #temp02 {
   opacity: 0;
   position: absolute;
   top: 150px;
   left: 0;
   right: 0;
-}
-.containerPDA {
-  /* display: none; */
-}
-.iconsPDA {
 }
 .iconPDA {
   cursor: pointer;
@@ -997,13 +1004,14 @@ html {
 }
 
 .profilePDA {
+  display: none;
   opacity: 1;
   width: 100%;
   height: 100%;
   z-index: 3;
   position: absolute;
   overflow: hidden scroll;
-  background-color: #1b1b1b;
+  background-color: #eee;
   color: #f5f5f5;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -1013,15 +1021,16 @@ html {
   display: none;
 }
 .profileTop {
+  opacity: 0;
   background-color: #242a32;
   width: 100%;
   height: 150px;
   box-sizing: border-box;
   z-index: 1;
   position: absolute;
-  -webkit-box-shadow: 0px 4px 80px -20px rgba(0,0,0,1);
--moz-box-shadow: 0px 4px 80px -20px rgba(0,0,0,1);
-box-shadow: 0px 4px 80px -20px rgba(0,0,0,1);
+  -webkit-box-shadow: 0px 4px 80px -20px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 0px 4px 80px -20px rgba(0, 0, 0, 1);
+  box-shadow: 0px 4px 80px -20px rgba(0, 0, 0, 1);
 }
 .profileProfilePic {
   width: 100px;
@@ -1073,54 +1082,76 @@ box-shadow: 0px 4px 80px -20px rgba(0,0,0,1);
   position: absolute;
 }
 .profileBody {
+  opacity: 0;
   top: 150px;
   width: 100%;
-  height: 500px;
+  height: 250px;
   position: absolute;
   background-color: #242426;
 }
 .profileAboutMe {
   background-color: #1c1c1c;
   width: 90%;
-  height: 500px;
+  height: 100%;
   left: 5%;
   position: absolute;
   box-sizing: border-box;
   border-left: 3px solid #161616;
   border-right: 3px solid #161616;
+  border-bottom: 3px solid #161616;
   /* border-left: 2px; */
 }
-.profileDescription{
+.profileDescription {
   text-align: left;
   z-index: 1;
+  width: 100%;
+  height: 100%;
   left: 5%;
   position: absolute;
 }
-.bigEmojis{
-  font-size: 20px;
-}
-.aboutMeWindowBar {
-  background-color: #1c242f;
-  top: 10px;
+
+.descAboutMe {
+  top: 25px;
   width: 90%;
-  left: 5%;
-  height: 25px;
-  border-radius: 10px 10px 0 0;
-  position: absolute;
-  z-index: 1;
-}
-.aboutMeTitle {
-  position: absolute;
-  top: 7px;
-  left: 15px;
-}
-.aboutMeBody {
-  top: 35px;
-  width: 90%;
-  left: 5%;
   height: 200px;
-  background-color: #181c25;
   position: absolute;
+  /* background-color: chartreuse; */
+}
+
+.AMBar {
+  color: #aaa;
+  font-size: 18px;
+  border-radius: 1px;
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  padding: 10px;
+  position: absolute;
+  background-color: #141414;
+}
+
+.AMBody {
+  top: 50px;
+  box-sizing: border-box;
+  padding: 10px;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 1px;
+  width: 100%;
+  position: absolute;
+  background-color: #141414;
+}
+
+.descMyInterests {
+  top: 250px;
+  width: 90%;
+  /* height: 100px; */
+  position: absolute;
+  /* background-color: chartreuse; */
+}
+
+.bigEmojis {
+  font-size: 20px;
 }
 
 .igPDA {
@@ -1159,6 +1190,7 @@ box-shadow: 0px 4px 80px -20px rgba(0,0,0,1);
   position: absolute;
 }
 .igNavbarSearch {
+  cursor: pointer;
   width: 32px;
   height: 32px;
   top: 12px;
@@ -1273,6 +1305,7 @@ box-shadow: 0px 4px 80px -20px rgba(0,0,0,1);
 }
 
 .chatsPDA {
+  /* display: none; */
   opacity: 1;
   width: 100%;
   height: 100%;

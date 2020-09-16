@@ -734,6 +734,29 @@ $("#tempDC").click(function () {
   }
 });
 
+var y = 0;
+var z = 0;
+var txt1 = [
+  "¬‿¬ Do you want to know my secrets?",
+  "Sorry, this menu is not available yet.",
+  "Sorry, this menu is not available yet.",
+  "Sorry, this menu is not available yet.",
+];
+
+function typeWriter1() {
+  if (y < txt1[z].length) {
+    // $(".infodesc").html()+= txt1[z].charAt(y);
+    document.getElementById("infoDesc").innerHTML += txt1[z].charAt(y);
+    y++;
+    if (y == txt1[z].length) {
+      isTyping = false;
+    }
+    if (isTyping != false) {
+      setTimeout(typeWriter1, 50);
+    }
+  }
+}
+
 timelinePDA = new TimelineMax({
   paused: true,
 });
@@ -779,8 +802,9 @@ $(".naviArrowRight").click(function () {
     $(".lightAboutMe").toggleClass("lightAboutMeOn");
     offPDA();
     closeIG();
-    $(".screenPDA a").stop();
-    setTimeout($(".screenPDA a").css("opacity", 0), 1);
+    closeProfile();
+    $(".containerPDA a").stop();
+    setTimeout($(".containerPDA a").css("opacity", 0), 1);
   }
   if (menuIndex < 3) {
     menuIndex++;
@@ -790,7 +814,13 @@ $(".naviArrowRight").click(function () {
       menuLocation++;
       $(".menuAboutMe").animate({ left: -800 - windowWidth, opacity: 0 }, 1000);
       $(".menuMyProjects").animate({ right: 0, opacity: 1 }, 1000);
-      $(".infoDesc").html("Sorry, this menu is not available yet.");
+      clearTimeout(typeWriter1);
+      y = 0;
+      z++;
+      document.getElementById("infoDesc").innerHTML = "";
+      isTyping = true;
+      setTimeout(typeWriter1(), speed);
+      // $(".infoDesc").html("Sorry, this menu is not available yet.");
       // $(".infoDesc").html("My children of blood, sweat and tears..");
       $(".menuTitle").html("My Projects");
     }
@@ -802,7 +832,13 @@ $(".naviArrowRight").click(function () {
         { duration: 1000, queue: false }
       );
       $(".menuGames").animate({ right: 0, opacity: 1 }, 1000);
-      $(".infoDesc").html("Sorry, this menu is not available yet.");
+      clearTimeout(typeWriter1);
+      y = 0;
+      z++;
+      document.getElementById("infoDesc").innerHTML = "";
+      isTyping = true;
+      setTimeout(typeWriter1(), speed);
+      // $(".infoDesc").html("Sorry, this menu is not available yet.");
       // $(".infoDesc").html("( ͡° ͜ʖ ͡°) Wanna play sum games?");
       $(".menuTitle").html("Games");
     }
@@ -814,7 +850,13 @@ $(".naviArrowRight").click(function () {
         { duration: 1000, queue: false }
       );
       $(".menuSettings").animate({ right: 0, opacity: 1 }, 1000);
-      $(".infoDesc").html("Sorry, this menu is not available yet.");
+      clearTimeout(typeWriter1);
+      y = 0;
+      z++;
+      document.getElementById("infoDesc").innerHTML = "";
+      isTyping = true;
+      setTimeout(typeWriter1(), speed);
+      // $(".infoDesc").html("Sorry, this menu is not available yet.");
       // $(".infoDesc").html("This thing can change stuff! (゜ロ゜)");
       $(".menuTitle").html("Settings");
     }
@@ -833,7 +875,13 @@ $(".naviArrowLeft").click(function () {
         { right: -600 - windowWidth, opacity: 0 },
         { duration: 1000, queue: false }
       );
-      $(".infoDesc").html("¬‿¬ Do you want to know my secrets?");
+      clearTimeout(typeWriter1);
+      y = 0;
+      z--;
+      document.getElementById("infoDesc").innerHTML = "";
+      isTyping = true;
+      setTimeout(typeWriter1(), speed);
+      // $(".infoDesc").html("¬‿¬ Do you want to know my secrets?");
       $(".menuTitle").html("About Me");
     }
   } else if (menuIndex == 1) {
@@ -844,7 +892,13 @@ $(".naviArrowLeft").click(function () {
         { right: -700 - windowWidth, opacity: 0 },
         { duration: 1000, queue: false }
       );
-      $(".infoDesc").html("Sorry, this menu is not available yet.");
+      clearTimeout(typeWriter1);
+      y = 0;
+      z--;
+      document.getElementById("infoDesc").innerHTML = "";
+      isTyping = true;
+      setTimeout(typeWriter1(), speed);
+      // $(".infoDesc").html("Sorry, this menu is not available yet.");
       // $(".infoDesc").html("My children of blood, sweat and tears..");
       $(".menuTitle").html("My Projects");
     }
@@ -856,7 +910,13 @@ $(".naviArrowLeft").click(function () {
         { right: -375 - windowWidth, opacity: 0 },
         1000
       );
-      $(".infoDesc").html("Sorry, this menu is not available yet.");
+      clearTimeout(typeWriter1);
+      y = 0;
+      z--;
+      document.getElementById("infoDesc").innerHTML = "";
+      isTyping = true;
+      setTimeout(typeWriter1(), speed);
+      // $(".infoDesc").html("Sorry, this menu is not available yet.");
       // $(".infoDesc").html("( ͡° ͜ʖ ͡°) Wanna play sum games?");
       $(".menuTitle").html("Games");
     }
@@ -868,7 +928,8 @@ $(".dialogIconA").click(function () {
     if (isTurnedOnPDA == true) {
       $(".containerPDA").css("display", "block");
       toggleSwitcherPDA();
-      $(".screenPDA a").delay(500).animate({ opacity: "1" }, 1000);
+      // $(".screenPDA a").animate({ opacity: "1" }, 1);
+      $(".containerPDA a").delay(500).animate({ opacity: "1" }, 1000);
       $(".iconPDA").delay(500).animate({ opacity: "1" }, 1000);
       $(".iconTitle").delay(500).animate({ opacity: "1" }, 1000);
       $(".lightAboutMe").toggleClass("lightAboutMeOn");
@@ -881,8 +942,9 @@ $(".dialogIconB").click(function () {
       toggleSwitcherPDA();
       offPDA();
       closeIG();
-      $(".screenPDA a").stop();
-      setTimeout($(".screenPDA a").css("opacity", 0), 1);
+      closeProfile();
+      $(".containerPDA a").stop();
+      setTimeout($(".containerPDA a").css("opacity", 0), 1);
       $(".lightAboutMe").toggleClass("lightAboutMeOn");
     }
   }
@@ -932,67 +994,99 @@ $.ajax({
   },
 });
 
+function instagramSearch(){
+  
+  igUsername = $("#igNavbarInput").val();
+  $.ajax({
+    url: "https://www.instagram.com/" + igUsername + "?__a=1",
+    type: "get",
+    success: function (response) {
+      $(".igProfilePic").css(
+        "background-image",
+        "url(" + response.graphql.user.profile_pic_url + ")"
+      );
+      $(".igProfileName").html(response.graphql.user.full_name);
+      $(".igUsername").html(response.graphql.user.username);
+      $(".igPosts").html(
+        nFormatter(response.graphql.user.edge_owner_to_timeline_media.count) +
+          "<br>posts"
+      );
+      $(".igFollowers").html(
+        nFormatter(response.graphql.user.edge_followed_by.count) +
+          "<br>followers"
+      );
+      $(".igFollowing").html(
+        nFormatter(response.graphql.user.edge_follow.count) + "<br>following"
+      );
+      posts = response.graphql.user.edge_owner_to_timeline_media.edges;
+      posts_html = "";
+      for (var i = 0; i < 3; i++) {
+        if (
+          response.graphql.user.edge_owner_to_timeline_media.count > 0 &&
+          posts.length == 0
+        ) {
+          $(".igPost1").css("background-image", "url()");
+          $(".igPost2").css("background-image", "url()");
+          $(".igPost3").css("background-image", "url()");
+        }
+        if (response.graphql.user.edge_owner_to_timeline_media.count < 1) {
+          $(".igPost1").css("background-image", "url()");
+          $(".igPost2").css("background-image", "url()");
+          $(".igPost3").css("background-image", "url()");
+        } else if (
+          response.graphql.user.edge_owner_to_timeline_media.count < 2
+        ) {
+          $(".igPost2").css("background-image", "url()");
+          $(".igPost3").css("background-image", "url()");
+        } else if (
+          response.graphql.user.edge_owner_to_timeline_media.count < 3
+        ) {
+          $(".igPost3").css("background-image", "url()");
+        }
+        url = posts[i].node.display_url;
+        $(".igPost" + (i + 1)).css("background-image", "url(" + url + ")");
+      }
+    },
+  });
+}
+
+
+$(".igNavbarSearch").click(function () {
+  instagramSearch();
+});
+
 const igSearch = document.getElementById("igNavbarInput");
 igSearch.addEventListener("keyup", function (event) {
   if (event.key === "Enter") {
-    igUsername = $("#igNavbarInput").val();
-    $.ajax({
-      url: "https://www.instagram.com/" + igUsername + "?__a=1",
-      type: "get",
-      success: function (response) {
-        $(".igProfilePic").css(
-          "background-image",
-          "url(" + response.graphql.user.profile_pic_url + ")"
-        );
-        $(".igProfileName").html(response.graphql.user.full_name);
-        $(".igUsername").html(response.graphql.user.username);
-        $(".igPosts").html(
-          nFormatter(response.graphql.user.edge_owner_to_timeline_media.count) +
-            "<br>posts"
-        );
-        $(".igFollowers").html(
-          nFormatter(response.graphql.user.edge_followed_by.count) +
-            "<br>followers"
-        );
-        $(".igFollowing").html(
-          nFormatter(response.graphql.user.edge_follow.count) + "<br>following"
-        );
-        posts = response.graphql.user.edge_owner_to_timeline_media.edges;
-        posts_html = "";
-        for (var i = 0; i < 3; i++) {
-          if (
-            response.graphql.user.edge_owner_to_timeline_media.count > 0 &&
-            posts.length == 0
-          ) {
-            $(".igPost1").css("background-image", "url()");
-            $(".igPost2").css("background-image", "url()");
-            $(".igPost3").css("background-image", "url()");
-          }
-          if (response.graphql.user.edge_owner_to_timeline_media.count < 1) {
-            $(".igPost1").css("background-image", "url()");
-            $(".igPost2").css("background-image", "url()");
-            $(".igPost3").css("background-image", "url()");
-          } else if (
-            response.graphql.user.edge_owner_to_timeline_media.count < 2
-          ) {
-            $(".igPost2").css("background-image", "url()");
-            $(".igPost3").css("background-image", "url()");
-          } else if (
-            response.graphql.user.edge_owner_to_timeline_media.count < 3
-          ) {
-            $(".igPost3").css("background-image", "url()");
-          }
-          url = posts[i].node.display_url;
-          $(".igPost" + (i + 1)).css("background-image", "url(" + url + ")");
-        }
-      },
-    });
+    instagramSearch();
   }
 });
 
+$(".iconProfile").click(function () {
+  $(".containerPDA a").stop();
+  setTimeout($(".containerPDA a").css("opacity", 0), 1);
+  $(".profilePDA").css("display", "block");
+  $(".iconPDA").stop();
+  $(".iconTitle").stop();
+  $(".iconPDA").animate({ opacity: "0" }, 500);
+  $(".iconTitle").animate({ opacity: "0" }, 500);
+  $(".profileTop").delay(500).animate({ opacity: "1" }, 500);
+  $(".profileBody").delay(500).animate({ opacity: "1" }, 500);
+});
+
+function closeProfile(){
+  $(".containerPDA a").stop();
+  setTimeout($(".containerPDA a").css("opacity", 1), 1);
+  $(".profilePDA").css("display", "none");
+  $(".profileTop").stop();
+  $(".profileBody").stop();
+  $(".profileTop").css("opacity", 0);
+  $(".profileBody").css("opacity", 0);
+}
+
 $(".iconIG").click(function () {
-  $(".screenPDA a").stop();
-  setTimeout($(".screenPDA a").css("opacity", 0), 1);
+  $(".containerPDA a").stop();
+  setTimeout($(".containerPDA a").css("opacity", 0), 1);
   $(".igPDA").css("display", "block");
   $(".iconPDA").stop();
   $(".iconTitle").stop();
@@ -1003,9 +1097,8 @@ $(".iconIG").click(function () {
 });
 
 function closeIG(){
-  
-  $(".screenPDA a").stop();
-  setTimeout($(".screenPDA a").css("opacity", 1), 1);
+  $(".containerPDA a").stop();
+  setTimeout($(".containerPDA a").css("opacity", 1), 1);
   $(".igPDA").css("display", "none");
   $(".igNavbar").stop();
   $(".igBody").stop();
@@ -1017,6 +1110,7 @@ $(".aboutMeBackBtn").click(function () {
   if (menuIndex == 0) {
     if (isTurnedOnPDA == false) {
       closeIG();
+      closeProfile();
       $(".iconPDA").animate({ opacity: "1" }, 500);
       $(".iconTitle").animate({ opacity: "1" }, 500);
     }
