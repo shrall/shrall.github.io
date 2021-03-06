@@ -33,6 +33,115 @@ html {
 #start-page a {
   font-size: xx-large;
 }
+/*! Manual */
+.manualBackdrop {
+  display: none;
+  top: 0;
+  z-index: 2;
+  opacity: 0;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: black;
+}
+.gameboyManual {
+  display: none;
+  opacity: 0;
+  z-index: 3;
+  right: 0;
+  left: 0;
+  top: 10px;
+  bottom: 0;
+  margin-right: auto;
+  margin-left: auto;
+  width: 600px;
+  height: 800px;
+  position: absolute;
+  background-image: url(img/ManualGameboy.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center top;
+}
+.manualTitle {
+  position: absolute;
+  top: 24px;
+  left: 0;
+  right: 0;
+  font-size: 48px;
+  color: #141414;
+}
+.manualHead {
+  position: absolute;
+  color: #141414;
+  font-size: 16px;
+}
+.manualBody {
+  position: absolute;
+  color: #141414;
+  font-size: 12px;
+}
+.manualHeadScreen {
+  right: 40px;
+  top: 195px;
+}
+.manualBodyScreen {
+  text-align: left;
+  right: 68px;
+  top: 235px;
+}
+.manualHeadBtnA {
+  right: 14px;
+  top: 370px;
+}
+.manualBodyBtnA {
+  text-align: left;
+  top: 410px;
+  right: 170px;
+}
+.manualHeadBtnB {
+  right: 14px;
+  top: 440px;
+}
+.manualBodyBtnB {
+  text-align: left;
+  top: 480px;
+  right: 180px;
+}
+.manualHeadBtnStart {
+  bottom: 190px;
+  right: 65px;
+}
+.manualBodyBtnStart {
+  text-align: left;
+  bottom: 145px;
+  right: 105px;
+}
+.manualHeadBtnSelect {
+  bottom: 115px;
+  right: 95px;
+}
+.manualBodyBtnSelect {
+  text-align: left;
+  bottom: 75px;
+  right: 165px;
+}
+.manualBtnBack {
+  cursor: pointer;
+  position: absolute;
+  width: 168px;
+  height: 88px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  bottom: -40px;
+  background-image: url(img/BackButton.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center top;
+}
+.manualBtnBack:hover {
+  background-image: url(img/BackButtonPressed.png);
+}
 .offBG {
   position: absolute;
   background-color: black;
@@ -59,6 +168,7 @@ html {
   background-position: center top;
 }
 
+/* ! power button */
 .btnPower {
   right: 0;
   left: -750px;
@@ -103,7 +213,37 @@ html {
 .powerLightsOn {
   background-color: red;
 }
+/* !button manual */
+.btnManual {
+  right: 0;
+  left: -790px;
+  top: 250px;
+  bottom: 0;
+  margin-right: auto;
+  margin-left: auto;
+  width: 260px;
+  position: absolute;
+  background-image: url(img/ManualButton.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center top;
+}
+.btnManualOpen {
+  z-index: 1;
+  cursor: pointer;
+  position: absolute;
+  width: 200px;
+  height: 70px;
+  top: 310px;
+  right: 0;
+  left: -790px;
+  margin: 0 auto;
+}
+.btnManualOpen:hover + .btnManual {
+  background-image: url(img/ManualButtonHover.png);
+}
 
+/* ! screen */
 .screen {
   top: 210px;
   left: 50%;
@@ -788,8 +928,6 @@ html {
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center top;
-  /* animation: jumpstat 0.8s linear infinite;
-  animation-direction: alternate; */
 }
 .infoTitle {
   position: absolute;
@@ -1231,13 +1369,13 @@ html {
 .igUsername {
   position: absolute;
   top: 25px;
-  left: 175px;
+  left: 180px;
   font-size: 16px;
 }
 .igProfileName {
   position: absolute;
   top: 50px;
-  left: 175px;
+  left: 180px;
   font-size: 10px;
 }
 .igBody a {
@@ -1246,7 +1384,7 @@ html {
 .igPosts {
   position: absolute;
   top: 75px;
-  left: 175px;
+  left: 180px;
   font-size: 11px;
 }
 .igFollowers {

@@ -12,14 +12,55 @@ var lowerCase = 0;
 var isTurnedOn = true;
 var timeline;
 var isTyping = true;
-var playerName = "";
+var playerName = localStorage["player_name"] || "";
 var windowWidth = $(window).width();
+
+if (playerName != "") {
+  skipGameboy();
+}
+
+function skipGameboy() {
+  document.querySelector(".playerName").innerHTML = playerName;
+  $("#start-page").animate({ opacity: "0" }, 1000);
+  setTimeout(function () {
+    $("#start-page").css({ display: "none" });
+  }, 1500);
+  setTimeout(function () {
+    $(".circle1").css({ display: "none" });
+  }, 2500);
+  setTimeout(function () {
+    $("#home-page").css({ display: "block" });
+  }, 1500);
+  setTimeout(function () {
+    $("#home-page").animate({ opacity: "1" }, 1000);
+  }, 2500);
+}
 
 if ($(window).width() >= 1920) {
   document.body.style.zoom = 1.0;
 } else if ($(window).width() >= 1280) {
   document.body.style.zoom = 0.9;
 }
+
+//! manual
+$(".btnManualOpen").click(function(){
+  $(".manualBackdrop").css({ display: "block" });
+  $(".gameboyManual").css({ display: "block" });
+  $(".manualBackdrop").animate({ opacity: "0.5" }, 500);
+  $(".gameboyManual").animate({ opacity: "1" }, 500);
+});
+var manualBack = $(".manualBtnBack");
+manualBack.click(function () {
+  $(".manualBackdrop").animate({ opacity: "0" }, 500);
+  $(".gameboyManual").animate({ opacity: "0" }, 500);
+  setTimeout(function () {
+    $(".manualBackdrop").css({ display: "none" });
+  }, 500);
+  setTimeout(function () {
+    $(".gameboyManual").css({ display: "none" });
+  }, 500);
+});
+
 
 timeline = new TimelineMax({
   paused: true,
@@ -68,9 +109,15 @@ function toggleSwitcherTV() {
   }
   isTurnedOn = !isTurnedOn;
 }
+// var currentZoom = 1;
 
 var btnOff = $(".btnOff");
 btnOff.click(function () {
+  // currentZoom += 0.1;
+  // $('html').css({
+  //     zoom: currentZoom,
+  //     '-moz-transform': 'scale(' + currentZoom + ')'
+  // });
   document.getElementById("words").innerHTML = "";
   i = 0;
   new Audio("bgm/btnPower.mp3").play();
@@ -355,6 +402,7 @@ $(".btnStarts").click(function () {
     for (z = 1; z < nameCursor; z++) {
       playerName += document.getElementById("name" + z).innerHTML;
     }
+    localStorage["player_name"] = playerName;
     txt.push("Alright!So your name is " + playerName + ", huh?");
     $(".nameUser").animate({ opacity: "0" }, 500);
     $(".screen").delay(500).animate({ backgroundColor: "#eee" }, 1000);
@@ -418,6 +466,7 @@ $(".btnAB").click(function () {
   }
 
   if (j >= 24) {
+    //! pindah dari gameboy ke main menu
     fade();
     document.querySelector(".playerName").innerHTML = playerName;
     setTimeout(stopBGM, 2200);
@@ -795,7 +844,7 @@ $(".menuMyProjects").css({ right: -600 - windowWidth });
 $(".menuGames").css({ right: -700 - windowWidth });
 $(".menuSettings").css({ right: -375 - windowWidth });
 
-function naviRight(){
+function naviRight() {
   yinfo = 0;
   zinfo++;
   document.getElementById("infoDesc").innerHTML = "";
@@ -803,7 +852,7 @@ function naviRight(){
   setTimeout(typeWriter1(), 50);
 }
 
-function naviLeft(){
+function naviLeft() {
   yinfo = 0;
   zinfo--;
   document.getElementById("infoDesc").innerHTML = "";
@@ -875,7 +924,7 @@ $(".naviArrowLeft").click(function () {
         { right: -600 - windowWidth, opacity: 0 },
         { duration: 1000, queue: false }
       );
-        naviLeft();
+      naviLeft();
       // $(".infoDesc").html("¬‿¬ Do you want to know my secrets?");
       $(".menuTitle").html("About Me");
     }
@@ -950,91 +999,204 @@ function nFormatter(num) {
 
 var igUsername = "shrallok";
 
-$.ajax({
-  url: "https://www.instagram.com/" + igUsername + "?__a=1",
-  type: "get",
-  success: function (response) {
+$.instagramFeed({
+  username: igUsername,
+  callback: function (data) {
     $(".igProfilePic").css(
       "background-image",
-      "url(" + response.graphql.user.profile_pic_url + ")"
+      "url(" + JSON.stringify(data.profile_pic_url).replace(/\"/g, "") + ")"
     );
-    $(".igProfileName").html(response.graphql.user.full_name);
-    $(".igUsername").html(response.graphql.user.username);
+    $(".igProfileName").html(JSON.stringify(data.full_name).replace(/\"/g, ""));
+    $(".igUsername").html(JSON.stringify(data.username).replace(/\"/g, ""));
     $(".igPosts").html(
-      nFormatter(response.graphql.user.edge_owner_to_timeline_media.count) +
-        "<br>posts"
+      nFormatter(
+        JSON.stringify(data.edge_owner_to_timeline_media.count).replace(
+          /\"/g,
+          ""
+        )
+      ) + "<br>posts"
     );
     $(".igFollowers").html(
-      nFormatter(response.graphql.user.edge_followed_by.count) + "<br>followers"
+      nFormatter(
+        JSON.stringify(data.edge_followed_by.count).replace(/\"/g, "")
+      ) + "<br>followers"
     );
     $(".igFollowing").html(
-      nFormatter(response.graphql.user.edge_follow.count) + "<br>following"
+      nFormatter(JSON.stringify(data.edge_follow.count).replace(/\"/g, "")) +
+        "<br>following"
     );
-    posts = response.graphql.user.edge_owner_to_timeline_media.edges;
-    posts_html = "";
-    for (var i = 0; i < posts.length; i++) {
-      url = posts[i].node.display_url;
-      $(".igPost" + (i + 1)).css("background-image", "url(" + url + ")");
+    posts = JSON.stringify(data.edge_owner_to_timeline_media.edges).replace(
+      /\"/g,
+      ""
+    );
+    if (data.edge_owner_to_timeline_media.count > 0 && posts.length == 0) {
+      $(".igPost1").css("background-image", "url()");
+      $(".igPost2").css("background-image", "url()");
+      $(".igPost3").css("background-image", "url()");
+    }
+    if (data.edge_owner_to_timeline_media.count < 1) {
+      $(".igPost1").css("background-image", "url()");
+      $(".igPost2").css("background-image", "url()");
+      $(".igPost3").css("background-image", "url()");
+    } else if (data.edge_owner_to_timeline_media.count < 2) {
+      $(".igPost1").css(
+        "background-image",
+        "url(" +
+          JSON.stringify(
+            data.edge_owner_to_timeline_media.edges[0].node.display_url
+          ).replace(/\"/g, "") +
+          ")"
+      );
+      $(".igPost2").css("background-image", "url()");
+      $(".igPost3").css("background-image", "url()");
+    } else if (data.edge_owner_to_timeline_media.count < 3) {
+      $(".igPost1").css(
+        "background-image",
+        "url(" +
+          JSON.stringify(
+            data.edge_owner_to_timeline_media.edges[0].node.display_url
+          ).replace(/\"/g, "") +
+          ")"
+      );
+      $(".igPost2").css(
+        "background-image",
+        "url(" +
+          JSON.stringify(
+            data.edge_owner_to_timeline_media.edges[1].node.display_url
+          ).replace(/\"/g, "") +
+          ")"
+      );
+      $(".igPost3").css("background-image", "url()");
+    } else {
+      $(".igPost1").css(
+        "background-image",
+        "url(" +
+          JSON.stringify(
+            data.edge_owner_to_timeline_media.edges[0].node.display_url
+          ).replace(/\"/g, "") +
+          ")"
+      );
+      $(".igPost2").css(
+        "background-image",
+        "url(" +
+          JSON.stringify(
+            data.edge_owner_to_timeline_media.edges[1].node.display_url
+          ).replace(/\"/g, "") +
+          ")"
+      );
+      $(".igPost3").css(
+        "background-image",
+        "url(" +
+          JSON.stringify(
+            data.edge_owner_to_timeline_media.edges[2].node.display_url
+          ).replace(/\"/g, "") +
+          ")"
+      );
     }
   },
 });
 
-function instagramSearch(){
-  
+function instagramSearch() {
   igUsername = $("#igNavbarInput").val();
-  $.ajax({
-    url: "https://www.instagram.com/" + igUsername + "?__a=1",
-    type: "get",
-    success: function (response) {
+  $.instagramFeed({
+    username: igUsername,
+    callback: function (data) {
       $(".igProfilePic").css(
         "background-image",
-        "url(" + response.graphql.user.profile_pic_url + ")"
+        "url(" + JSON.stringify(data.profile_pic_url).replace(/\"/g, "") + ")"
       );
-      $(".igProfileName").html(response.graphql.user.full_name);
-      $(".igUsername").html(response.graphql.user.username);
+      $(".igProfileName").html(
+        JSON.stringify(data.full_name).replace(/\"/g, "")
+      );
+      $(".igUsername").html(JSON.stringify(data.username).replace(/\"/g, ""));
       $(".igPosts").html(
-        nFormatter(response.graphql.user.edge_owner_to_timeline_media.count) +
-          "<br>posts"
+        nFormatter(
+          JSON.stringify(data.edge_owner_to_timeline_media.count).replace(
+            /\"/g,
+            ""
+          )
+        ) + "<br>posts"
       );
       $(".igFollowers").html(
-        nFormatter(response.graphql.user.edge_followed_by.count) +
-          "<br>followers"
+        nFormatter(
+          JSON.stringify(data.edge_followed_by.count).replace(/\"/g, "")
+        ) + "<br>followers"
       );
       $(".igFollowing").html(
-        nFormatter(response.graphql.user.edge_follow.count) + "<br>following"
+        nFormatter(JSON.stringify(data.edge_follow.count).replace(/\"/g, "")) +
+          "<br>following"
       );
-      posts = response.graphql.user.edge_owner_to_timeline_media.edges;
-      posts_html = "";
-      for (var i = 0; i < 3; i++) {
-        if (
-          response.graphql.user.edge_owner_to_timeline_media.count > 0 &&
-          posts.length == 0
-        ) {
-          $(".igPost1").css("background-image", "url()");
-          $(".igPost2").css("background-image", "url()");
-          $(".igPost3").css("background-image", "url()");
-        }
-        if (response.graphql.user.edge_owner_to_timeline_media.count < 1) {
-          $(".igPost1").css("background-image", "url()");
-          $(".igPost2").css("background-image", "url()");
-          $(".igPost3").css("background-image", "url()");
-        } else if (
-          response.graphql.user.edge_owner_to_timeline_media.count < 2
-        ) {
-          $(".igPost2").css("background-image", "url()");
-          $(".igPost3").css("background-image", "url()");
-        } else if (
-          response.graphql.user.edge_owner_to_timeline_media.count < 3
-        ) {
-          $(".igPost3").css("background-image", "url()");
-        }
-        url = posts[i].node.display_url;
-        $(".igPost" + (i + 1)).css("background-image", "url(" + url + ")");
+      posts = JSON.stringify(data.edge_owner_to_timeline_media.edges).replace(
+        /\"/g,
+        ""
+      );
+      if (data.edge_owner_to_timeline_media.count > 0 && posts.length == 0) {
+        $(".igPost1").css("background-image", "url()");
+        $(".igPost2").css("background-image", "url()");
+        $(".igPost3").css("background-image", "url()");
+      }
+      if (data.edge_owner_to_timeline_media.count < 1) {
+        $(".igPost1").css("background-image", "url()");
+        $(".igPost2").css("background-image", "url()");
+        $(".igPost3").css("background-image", "url()");
+      } else if (data.edge_owner_to_timeline_media.count < 2) {
+        $(".igPost1").css(
+          "background-image",
+          "url(" +
+            JSON.stringify(
+              data.edge_owner_to_timeline_media.edges[0].node.display_url
+            ).replace(/\"/g, "") +
+            ")"
+        );
+        $(".igPost2").css("background-image", "url()");
+        $(".igPost3").css("background-image", "url()");
+      } else if (data.edge_owner_to_timeline_media.count < 3) {
+        $(".igPost1").css(
+          "background-image",
+          "url(" +
+            JSON.stringify(
+              data.edge_owner_to_timeline_media.edges[0].node.display_url
+            ).replace(/\"/g, "") +
+            ")"
+        );
+        $(".igPost2").css(
+          "background-image",
+          "url(" +
+            JSON.stringify(
+              data.edge_owner_to_timeline_media.edges[1].node.display_url
+            ).replace(/\"/g, "") +
+            ")"
+        );
+        $(".igPost3").css("background-image", "url()");
+      } else {
+        $(".igPost1").css(
+          "background-image",
+          "url(" +
+            JSON.stringify(
+              data.edge_owner_to_timeline_media.edges[0].node.display_url
+            ).replace(/\"/g, "") +
+            ")"
+        );
+        $(".igPost2").css(
+          "background-image",
+          "url(" +
+            JSON.stringify(
+              data.edge_owner_to_timeline_media.edges[1].node.display_url
+            ).replace(/\"/g, "") +
+            ")"
+        );
+        $(".igPost3").css(
+          "background-image",
+          "url(" +
+            JSON.stringify(
+              data.edge_owner_to_timeline_media.edges[2].node.display_url
+            ).replace(/\"/g, "") +
+            ")"
+        );
       }
     },
   });
 }
-
 
 $(".igNavbarSearch").click(function () {
   instagramSearch();
@@ -1059,7 +1221,7 @@ $(".iconProfile").click(function () {
   $(".profileBody").delay(500).animate({ opacity: "1" }, 500);
 });
 
-function closeProfile(){
+function closeProfile() {
   $(".containerPDA a").stop();
   setTimeout($(".containerPDA a").css("opacity", 1), 1);
   $(".profilePDA").css("display", "none");
@@ -1081,7 +1243,7 @@ $(".iconIG").click(function () {
   $(".igBody").delay(500).animate({ opacity: "1" }, 500);
 });
 
-function closeIG(){
+function closeIG() {
   $(".containerPDA a").stop();
   setTimeout($(".containerPDA a").css("opacity", 1), 1);
   $(".igPDA").css("display", "none");
@@ -1103,5 +1265,5 @@ $(".aboutMeBackBtn").click(function () {
 });
 
 $(".igVisitProfile").click(function () {
-window.open("https://www.instagram.com/" + igUsername);
+  window.open("https://www.instagram.com/" + igUsername);
 });
