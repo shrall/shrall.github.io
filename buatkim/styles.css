@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap");
+
+@font-face {
+  font-family: "Marsyal Hand";
+  src: url(./assets/marsyalhand.otf);
+}
+
+body {
+  font-family: "Marsyal Hand", cursive !important;
+}
+.smerch {
+  background-image: url(assets/stroke.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: top top;
+}

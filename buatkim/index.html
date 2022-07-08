@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <title>hai kim 👋</title>
+</head>
+
+<body id="the-body" class="bg-black">
+    <div id="screen-1" class="p-6 box-border mx-auto h-screen relative text-white" style="width:390px;">
+        <div class="flex flex-col items-center justify-center h-full relative">
+            <div class="text-2xl mb-2">你叫什么名字?</div>
+            <input type="text" onkeyup="checkAnswer(this.value)"
+                class="bg-black border border-white rounded-lg p-3 text-center">
+        </div>
+    </div>
+    <div id="screen-2" class="p-6 box-border mx-auto h-screen relative text-white hidden opacity-0"
+        style="width:390px;">
+        <div class="flex flex-col items-center justify-center h-full relative">
+            <img src="./assets/box1.PNG" onclick="animateBox()"
+                class="rotate-6 cursor-pointer hover:opacity-80 absolute box1 box1-1">
+            <img src="./assets/box1.PNG" onclick="animateBox()"
+                class="-rotate-3 cursor-pointer hover:opacity-80 absolute box1 box1-2 hidden">
+            <img src="./assets/box2.PNG" class="absolute box2 hidden">
+            <img src="./assets/box3.PNG" class="absolute box3 hidden">
+            <img src="./assets/box4.PNG" class="absolute box4 hidden">
+            <!-- <div class="p-1 -skew-y-12 box-border mx-auto h-screen text-slate-600 bg-white rounded-sm w-16 h-32 shadow-xl absolute left-32">
+                <div
+                    class="flex flex-col border-4 border-dashed h-full border-slate-600 text-2xl relative">
+                    <div class="absolute bottom-0 left-0" style="font-size: 0.5rem; line-height: 1;">#buatkim</div>
+                </div>
+            </div>
+            <div class="p-1 -skew-y-12 box-border mx-auto h-screen text-slate-600 bg-white rounded-sm w-16 h-32 shadow-xl absolute right-32">
+                <div
+                    class="flex flex-col border-4 border-dashed h-full border-slate-600 text-2xl relative">
+                    <div class="absolute top-1 left-0" style="font-size: 0.5rem; line-height: 1;">Hai kim!</div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <div id="screen-3"
+        class="p-6 box-border mx-auto min-h-screen relative text-slate-600 bg-neutral-200 hidden opacity-0"
+        style="width:390px;">
+        <div class="flex flex-col border-dashed h-full border-slate-600 p-2">
+            <div class="text-3xl mb-2">Hai Kim!</div>
+            <div class="indent-6 relative break-normal text-2xl mb-2 paragraph-1">Thank you ya buat hari ini! :>
+                <div class="text-xs absolute top-5 left-0 text-slate-400">(padahal pas nulis ini blm kejadian harinya
+                    :v)</div>
+                <span class="text-xl">sorry if I did anything wrong, and I hope it was fun for you too!</span>
+            </div>
+            <div class="indent-6 relative break-normal text-2xl hidden opacity-0 paragraph-2">
+                i feel grateful and lucky to have you as a close friend. aku memang interest sama kamu dari awal, tapi
+                ga expect kalo bakal deket semudah dan seklop ini wkwkwkwkw
+                <div class="text-xs absolute top-14 left-14 text-slate-400">(maunya nulis bebeb :c)</div>
+            </div>
+            <div class="indent-6 relative break-normal text-2xl hidden opacity-0 paragraph-3">
+                i really love on how you can be so cute dan GEMES BANGET AKUNYA KEK `AAAAAAAAAAAA KOK LUCU BANGET ANAK
+                INI`, aku suka banget juga kamu bisa smug ke aku dan ngebales joke ku c:
+                <div class="text-xs absolute top-36 right-6 text-slate-400">yakimemangjagosih</div>
+            </div>
+            <div class="indent-6 relative break-normal text-2xl mb-4 hidden opacity-0 paragraph-4"> but most of all aku
+                suka perhatian kecilmu yang muncul dan kamu bisa diajak discuss sesuatu yang berbobot dan dibawa
+                dengan opini yang emang berbobot juga.</div>
+            <div
+                class="text-center relative break-normal text-4xl hidden-text hidden opacity-0 hidden opacity-0 paragraph-5">
+                `<span style="color: #c1c6c8 !important;">Aku</span>
+                <span class="text-pink-500">suka</span> <span style="color: #fcfc91 !important;">Kim</span>`</div>
+            <div class="indent-6 relative break-normal text-2xl hidden-text hidden opacity-0 paragraph-5">
+                di awal, aku tertarik sama kamu soalnya kamu keliatan unik. designer yang keliatan pinter, jago
+                ngedesign, bisa bikin pixel art, kerjanya niat, ngegendong sampe punggungnya jebol, masuk epel akademi.
+                <div class="text-xs absolute top-20 left-16 text-slate-400">dan emang beneran pinter ternyata :v</div>
+                <div class="text-xs absolute top-12 left-16 text-slate-400">dan visually attractive ngl :v</div>
+                <div class="text-xs absolute top-44 left-36 text-slate-400">walopun joinnya karna fomo :v</div>
+            </div>
+            <div class="indent-6 relative break-normal text-2xl hidden-text hidden opacity-0 paragraph-6">
+                abis sekelompok aku jadi tau, kamu orangnya asik, bisa diajak diskusi, bisa diajak bercanda, kerjanya
+                ngelembur, dan ada sesuatu yang <span class="text-pink-300">lebih</span> dari impression awalku.
+            </div>
+            <div class="indent-6 relative break-normal text-2xl hidden-text hidden opacity-0 paragraph-7">
+                dari yang awalnya cuma sekedar tertarik, berubah jadi penasaran. Dari rasa penasaranku, aku nemu orang
+                yang menyenangkan untuk diajak kerja dan bercanda. Dari perhatian kecil yang kamu kasih ke aku, rasa
+                tertarik dan penasaran ku berubah jadi <span class="text-pink-500">suka</span> ke kamu.
+            </div>
+            <div class="indent-6 relative break-normal text-2xl hidden-text hidden opacity-0 mb-4 paragraph-8">
+                aku ga sadar kapan aku mulai
+                mikirin kamu. di awal aku cuma ngereminisce little jokes yang kita exchange satu sama lain. kek teman
+                seperngompolan dan juga cara mu nge okein diri sendiri wkwkwk `okay? okay.`
+            </div>
+            <div class="indent-6 relative break-normal text-2xl hidden-text hidden opacity-0 mb-4 paragraph-9">
+                dari cuma tertarik tadi, aku jadi penasaran.
+                <br><span class="hidden opacity-0" id="teks-1">`kim awal masuk <span
+                        style="color: #ef7e00 !important;">UC</span> gimana
+                    ya?`</span>
+                <br><span class="hidden opacity-0" id="teks-2">`kim <span class="text-pink-500">suka</span> design dari
+                    kapan ya?`</span>
+                <br><span class="hidden opacity-0" id="teks-3">`kim <span class="text-pink-500">suka</span> ngapain
+                    ya?`</span>
+                <br><span class="hidden opacity-0" id="teks-4">`kim <span class="text-pink-500">suka</span> makan apa
+                    ya?`</span>
+                <br><span class="hidden opacity-0" id="teks-5">`kim <span class="text-pink-500">suka</span> sama orang
+                    yang kayak gimana
+                    ya?`</span>
+            </div>
+            <div class="indent-6 relative break-normal text-2xl hidden-text hidden opacity-0 paragraph-10">
+                dari pingin tau preferensimu, akunya yang jadi suka sama kamu.
+                <br><span class="hidden opacity-0" id="tekse-1">`aku <span class="text-pink-500">suka</span> buat ketemu
+                    kamu.`</span>
+                <br><span class="hidden opacity-0" id="tekse-2">`aku <span class="text-pink-500">suka</span> ngobrol
+                    sama kamu.`</span>
+                <br><span class="hidden opacity-0" id="tekse-3">`aku <span class="text-pink-500">suka</span> ngeliat
+                    kamu senyum.`</span>
+                <br><span class="hidden opacity-0" id="tekse-4">`aku <span class="text-pink-500">suka</span> buat
+                    ngabisin waktuku buat kamu.`</span>
+                <br><span class="hidden opacity-0" id="tekse-5">`Iya, aku <span class="text-pink-500">suka</span> sama
+                    kamu.`</span>
+            </div>
+            <div class="indent-6 relative break-normal text-2xl hidden-text hidden opacity-0 paragraph-11">
+                dan sekarang, aku ngga yakin, perasaanku buat kamu ini cuma sekedar `<span
+                    class="text-pink-500">suka</span>` aja.
+            </div>
+            <div
+                class="text-center relative break-normal text-4xl hidden-text hidden opacity-0 hidden opacity-0 paragraph-12">
+                Aku
+                <span class="text-pink-700">sayang</span> kamu.</div>
+            <div class="relative break-normal text-2xl hidden-text hidden opacity-0 paragraph-13">
+                <span class="hidden opacity-0" id="teksed-1">aku ga suka mbayangin kamu <span
+                        class="text-sky-600">sedih</span>.</span>
+                <br><span class="hidden opacity-0" id="teksed-2">aku ngga suka ngeliat kamu <span
+                        class="text-black">stres</span>.</span>
+                <br><span class="hidden opacity-0" id="teksed-3">aku seneng ngeliat kamu <span
+                        class="text-yellow-400">senyum</span>.</span>
+                <br><span class="hidden opacity-0" id="teksed-4">aku bahagia ngeliat kamu <span
+                        class="text-orange-500">ketawa</span>.</span>
+                <br><span class="hidden opacity-0" id="teksed-5">aku pingin tau <span class="text-pink-700">lebih</span>
+                    tentang kamu.</span>
+                <br><span class="hidden opacity-0" id="teksed-6">aku pingin kamu <span
+                        class="text-pink-700">percaya</span> sama aku.</span>
+                <br><span class="hidden opacity-0" id="teksed-7">dan aku <span class="text-pink-700">percaya</span> sama
+                    kamu.</span>
+            </div>
+            <div
+                class="text-center relative break-normal text-4xl hidden-text hidden opacity-0 hidden opacity-0 paragraph-14 mt-12">
+                Kenapa kok aku yakin kalau aku <span class="text-pink-700">sayang</span> kamu?</div>
+            <div
+                class="text-center relative break-normal text-4xl hidden-text hidden opacity-0 hidden opacity-0 paragraph-14 mt-4">
+                Karena pas aku <span class="text-sky-600">sedih</span>, yang ku inget itu <span
+                    class="text-pink-700">kamu</span>
+            </div>
+            <div
+                class="text-center relative break-normal text-4xl hidden-text hidden opacity-0 hidden opacity-0 paragraph-14 my-4">
+                dan
+            </div>
+            <div
+                class="text-center relative break-normal text-4xl hidden-text hidden opacity-0 hidden opacity-0 paragraph-14 mb-4">
+                ketika aku <span class="text-yellow-400">senang</span>, yang ku inget itu juga <span
+                    class="text-pink-700">kamu</span>.
+            </div>
+            <div class="text-center relative break-normal text-3xl" id="click-me" onclick="nextParagraph()">
+                <span class="hover:opacity-70 text-blue-700 underline" id="click-me-text">click me</span>
+                <div class="text-sm absolute top-8 left-0 right-0 mx-auto text-slate-400">*kalo udah baca atas</div>
+            </div>
+        </div>
+    </div>
+    <div id="screen-4" class="p-6 box-border mx-auto min-h-screen relative text-slate-600 bg-white hidden opacity-0"
+        style="width:390px;">
+        <div class="flex flex-col items-center justify-center h-screen relative">kamu mau ngga jadi pacarku?
+            <div class="text-xs absolute bottom-24 text-slate-300 text-center hidden opacity-0" id="hint-text">aku cuma
+                nanya biar officially nembak aja
+                c:<br>kalau digantung gapapa banget.<br>aku pasti bakal masih ada buat kamu kok<br>kalau mau ditolak
+                juga gapapa.<br>jangan takut buat nolak.<br>dan selalu lakuin apa yang menurutmu benar.</div>
+            <div class="text-3xl absolute bottom-8">#buatkim</div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        var menuBGM = new Audio("assets/surat.mp3");
+        menuBGM.volume = 0.1;
+        menuBGM.loop = true;
+    </script>
+    <script>
+        function fadeOut(html) {
+            html.addClass('hidden');
+            html.animate({
+                opacity: "0"
+            }, 1000);
+            setTimeout(function () {
+                html.addClass('hidden');
+            }, 1000)
+        }
+
+        function fadeIn(html) {
+            html.removeClass('hidden');
+            html.animate({
+                opacity: "1"
+            }, 1000);
+        }
+
+        function fadeOutFadeIn(html1, html2) {
+            html1.animate({
+                opacity: "0"
+            }, 1000);
+            setTimeout(function () {
+                html1.addClass('hidden');
+                html2.removeClass('hidden');
+                html2.animate({
+                    opacity: "1"
+                }, 1000);
+            }, 1200);
+        }
+    </script>
+    <script>
+        //screen 1
+        function checkAnswer(ans) {
+            if (ans == "金宏芳") {
+                fadeOutFadeIn($('#screen-1'), $('#screen-2'))
+            }
+        }
+    </script>
+    <script>
+        //screen 2
+        boxCounter = 1
+        boxIndex = 1
+        boxAnimate()
+
+        function boxAnimate() {
+            setTimeout(function () {
+                if (boxCounter == 1) {
+                    $(".box" + boxIndex + "-" + boxCounter).addClass('hidden')
+                    boxCounter += 1;
+                    $(".box" + boxIndex + "-" + boxCounter).removeClass('hidden')
+                } else {
+                    $(".box" + boxIndex + "-" + boxCounter).addClass('hidden')
+                    boxCounter -= 1;
+                    $(".box" + boxIndex + "-" + boxCounter).removeClass('hidden')
+                }
+                boxAnimate()
+            }, 1000);
+        }
+
+        function animateBox() {
+            $('.box' + boxIndex).addClass('hidden')
+            boxIndex = 2
+            $('.box' + boxIndex).removeClass('hidden')
+            setTimeout(function () {
+                $('.box' + boxIndex).addClass('hidden')
+                boxIndex = 3
+                $('.box' + boxIndex).removeClass('hidden')
+                setTimeout(function () {
+                    $('.box' + boxIndex).addClass('hidden')
+                    boxIndex = 4
+                    $('.box' + boxIndex).removeClass('hidden')
+                    setTimeout(function () {
+                        fadeOutFadeIn($('#screen-2'), $('#screen-3'))
+                        menuBGM.play();
+                    }, 1000)
+                }, 1000)
+            }, 1000)
+        }
+    </script>
+    <script>
+        //screen 3
+        var currentP = 1
+        var currentT = 1
+        var currentTe = 1
+        var currentTed = 1
+
+        function nextParagraph() {
+            currentP += 1;
+            fadeIn($('.paragraph-' + currentP))
+            if (currentP == 9) {
+                fadeOut($('#click-me'))
+                nextTeks()
+            } else if (currentP == 10) {
+                fadeOut($('#click-me'))
+                nextTekse()
+            } else if (currentP == 13) {
+                fadeOut($('#click-me'))
+                nextTeksed()
+            } else if (currentP == 14) {
+                $('#click-me-text').html('terakhir')
+            } else if (currentP == 15) {
+                $('#the-body').removeClass('bg-black').addClass('bg-white')
+                fadeOutFadeIn($('#screen-3'), $('#screen-4'))
+                setTimeout(function () {
+                    fadeIn($('#hint-text'))
+                }, 5000)
+            }
+        }
+
+        function nextTeks() {
+            setTimeout(() => {
+                fadeIn($('#teks-' + currentT))
+                if (currentT < 6) {
+                    nextTeks()
+                } else {
+                    fadeIn($('#click-me'))
+                }
+                currentT += 1;
+            }, 2000);
+        }
+
+        function nextTekse() {
+            setTimeout(() => {
+                fadeIn($('#tekse-' + currentTe))
+                if (currentTe < 6) {
+                    nextTekse()
+                } else {
+                    fadeIn($('#click-me'))
+                }
+                currentTe += 1;
+            }, 2000);
+        }
+
+        function nextTeksed() {
+            setTimeout(() => {
+                fadeIn($('#teksed-' + currentTed))
+                if (currentTed < 8) {
+                    nextTeksed()
+                } else {
+                    fadeIn($('#click-me'))
+                }
+                currentTed += 1;
+            }, 2000);
+        }
+    </script>
+</body>
+
+</html>
