@@ -6,7 +6,7 @@
 }
 
 body {
-  font-family: "Marsyal Hand", cursive !important;
+  font-family: "Marsyal Hand", "Gochi Hand", cursive !important;
 }
 .smerch {
   background-image: url(assets/stroke.png);
